@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cpower Tools & Machinery Co.Ltd | Global Industrial Hardware</title>
+  <title>Cpower Tools & Machinery Co.Ltd</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,57 +14,45 @@
       --primary: #cc4400;       
       --primary-hover: #a33600; 
       --dark: #050505;          
-      --dark-card: #171717;     
       --text-main: #262626;     
       --text-light: #737373;    
       --surface: #ffffff;
-      --bg-body: #f5f5f5;       
-      --border: #e5e5e5;
-      
-      --radius: 12px;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --bg-body: #f1f5f9;       
+      --border: #e2e8f0;
+      --transition: all 0.3s ease;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-body);
       color: var(--text-main);
-      line-height: 1.7;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     /* Top Utility Bar */
     .top-bar {
       background-color: var(--dark);
       color: #a3a3a3;
-      font-size: 0.825rem;
+      font-size: 0.85rem;
       padding: 0.5rem 2rem;
-      border-bottom: 1px solid #262626;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 101;
-      position: relative;
+      justify-content: flex-end;
+      gap: 1.5rem;
     }
-    .top-contact { display: flex; gap: 1.5rem; }
-    .top-contact span { display: inline-flex; align-items: center; gap: 0.4rem; }
 
-    /* Header & Logo */
+    /* Main Navigation */
     header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
       z-index: 100;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      transition: var(--transition);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     .nav-container {
-      max-width: 1300px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 1rem 2rem;
       display: flex;
@@ -73,393 +61,437 @@
     }
     .brand-logo img {
       max-height: 45px;
-      width: auto;
       display: block;
     }
-    
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-main);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      padding: 0.75rem 1.75rem;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-primary:hover { background: var(--primary-hover); }
-
-    /* Hero Section */
-    .hero {
+    .main-menu {
       display: flex;
-      align-items: center;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 100%), url('https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80') center/cover;
-      color: white;
-      padding: 10rem 2rem 8rem;
+      gap: 1.5rem;
+      list-style: none;
     }
-    .hero-content {
-      max-width: 1300px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-subtitle {
-      color: var(--primary);
+    .main-menu a {
+      text-decoration: none;
+      color: var(--dark);
       font-weight: 700;
+      font-size: 0.95rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .hero-title {
-      font-size: 4.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      max-width: 800px;
-      letter-spacing: -0.02em;
-    }
-
-    /* Section Global */
-    .section { padding: 6rem 2rem; max-width: 1300px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 4rem; }
-    .section-tag { color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
-    .section-title { font-size: 2.5rem; font-weight: 800; color: var(--dark); }
-
-    /* Mega-Categories Grid */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-    .category-card {
-      background: white;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
       transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
+      padding: 0.5rem 0;
     }
-    .category-card:hover {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      border-color: var(--primary);
-      transform: translateY(-5px);
-    }
-    .category-img {
-      width: 100%;
-      height: 300px;
-      object-fit: contain;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      padding: 1rem;
-    }
-    .category-content { 
-      padding: 2rem; 
-      display: flex; 
-      flex-direction: column; 
-    }
-    .category-title { 
-      font-size: 1.5rem; 
-      font-weight: 800; 
-      margin-bottom: 1rem; 
-      color: var(--dark); 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .category-title i {
+    .main-menu a:hover, .main-menu a.active {
       color: var(--primary);
-      transition: transform 0.3s ease;
-    }
-    .category-card:hover .category-title i {
-      transform: translateX(5px);
-    }
-    .category-list { 
-      list-style: none; 
-      color: var(--text-light); 
-      font-size: 0.95rem;
-    }
-    .category-list li {
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .category-list li::before {
-      content: "•";
-      color: var(--primary);
-      font-weight: bold;
+      border-bottom: 2px solid var(--primary);
     }
 
-    /* Trust / Value Props */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-      margin-top: 4rem;
-    }
-    .feature-card {
-      padding: 2.5rem;
-      background: var(--bg-body);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-    .feature-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--dark);
-      color: var(--primary);
+    /* Sliding Window (Carousel) */
+    .slider-container {
+      position: relative;
+      max-width: 1400px;
+      margin: 2rem auto;
+      height: 400px;
+      overflow: hidden;
       border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .slide-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      color: white;
+      padding: 3rem 2rem 2rem;
+    }
+    .slide-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    
+    /* Slider Controls */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      transition: var(--transition);
     }
-    .feature-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; }
+    .slider-btn:hover { background: var(--primary); }
+    .prev-btn { left: 1rem; }
+    .next-btn { right: 1rem; }
+    .slider-dots {
+      position: absolute;
+      bottom: 1rem;
+      right: 2rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+    .dot.active { background: var(--primary); }
 
-    /* CTA Banner */
-    .cta-banner {
-      max-width: 1200px;
-      margin: 0 auto 6rem;
-      background: linear-gradient(135deg, var(--dark) 0%, #171717 100%);
-      border-radius: 24px;
-      padding: 5rem 3rem;
-      text-align: center;
-      color: white;
+    /* Main Layout Grid */
+    .layout-grid {
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
     }
-    .cta-banner h2 { font-size: 2.75rem; font-weight: 800; margin-bottom: 1rem; }
-    .cta-banner p { font-size: 1.15rem; color: #a3a3a3; max-width: 600px; margin: 0 auto 2.5rem; }
+
+    /* Left Sidebar */
+    .sidebar {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+    .sidebar-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dark);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary);
+    }
+    .cat-menu { list-style: none; }
+    .cat-menu li { margin-bottom: 0.25rem; }
+    .cat-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .cat-menu a:hover {
+      background: var(--bg-body);
+      color: var(--primary);
+      padding-left: 1rem;
+    }
+    
+    .archive-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .archive-title { font-size: 0.9rem; font-weight: 700; color: var(--text-light); margin-bottom: 0.75rem; text-transform: uppercase; }
+    .archive-links a { color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-right: 0.5rem; }
+
+    /* Right Content Area */
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid var(--dark);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .content-title { font-size: 1.75rem; font-weight: 800; color: var(--dark); }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .product-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+    .product-name { font-weight: 700; color: var(--dark); font-size: 1rem; margin-bottom: 0.5rem; }
+    .btn-rfq {
+      display: inline-block;
+      width: 100%;
+      padding: 0.5rem;
+      background: var(--bg-body);
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .btn-rfq:hover { background: var(--primary); color: white; }
+
+    /* News Strip */
+    .news-strip {
+      background: var(--surface);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+    .news-date { color: var(--primary); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .news-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--dark); }
+    .news-excerpt { color: var(--text-light); font-size: 0.95rem; }
 
     /* Footer */
     footer {
       background: var(--dark);
       color: #a3a3a3;
-      padding: 5rem 2rem 2rem;
-      border-top: 4px solid var(--primary);
+      padding: 3rem 2rem;
+      text-align: center;
     }
-    .footer-grid {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 4rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid #262626;
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
     }
-    .footer-col h5 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; }
-    .footer-contact { list-style: none; }
-    .footer-contact li { display: flex; gap: 0.75rem; margin-bottom: 1rem; font-size: 0.95rem; }
-    .footer-bottom { max-width: 1300px; margin: 2rem auto 0; text-align: center; font-size: 0.9rem; }
-
-    @media (max-width: 900px) {
-      .category-grid { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 3rem; }
-      .nav-links { display: none; }
+    .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--primary); }
+    
+    @media (max-width: 1024px) {
+      .layout-grid { grid-template-columns: 1fr; }
+      .sidebar { position: static; margin-bottom: 2rem; }
+      .main-menu { display: none; } /* Would implement a hamburger menu here for production */
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Contact Bar -->
+  <!-- Top Utility -->
   <div class="top-bar">
-    <div class="top-contact">
-      <span><i data-lucide="phone" style="width:14px;height:14px;"></i> 0086-29-88455900 / 88451686</span>
-      <span><i data-lucide="mail" style="width:14px;height:14px;"></i> cpowertools@foxmail.com</span>
-    </div>
-    <div>HTTP://WWW.CPOWERCO.COM</div>
+    <span>Tel: 0086-29-88455900</span>
+    <span>Email: cpowertools@foxmail.com</span>
   </div>
 
-  <!-- Header with Official Logo -->
+  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="#" class="brand-logo">
-        <img src="photos/logo.png" alt="Cpower Tools & Machinery Co.Ltd Logo">
+        <img src="photos/logo.png" alt="Cpower Tools">
       </a>
-
-      <ul class="nav-links">
+      <ul class="main-menu">
         <li><a href="#" class="active">Home</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">Company</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">New products</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="#">Contact us</a></li>
       </ul>
-      <a href="#catalog" class="btn-primary">Download Catalog</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-subtitle">
-        <i data-lucide="zap" style="width:18px;height:18px;"></i> Powering Global Industry
-      </div>
-      <h1 class="hero-title">Engineered for the<br>Modern Industrial World.</h1>
-      <p style="font-size: 1.25rem; color: #d4d4d8; max-width: 600px; margin-bottom: 2.5rem; line-height: 1.6;">
-        We manufacture and export world-class precision power tools, industrial hardware, and measuring equipment. Delivering high-torque performance to professionals worldwide.
-      </p>
-      <div style="display: flex; gap: 1rem;">
-        <a href="#products" class="btn-primary">Explore Products <i data-lucide="arrow-right" style="width:18px;height:18px;"></i></a>
-        <a href="#contact" class="btn-primary" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); box-shadow: none;">Contact Sales</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- High-Level Mega Categories -->
-  <section id="products" class="section">
-    <div class="section-header">
-      <span class="section-tag">Our Capabilities</span>
-      <h2 class="section-title">Comprehensive Product Lines</h2>
-    </div>
+  <!-- Sliding Window (Carousel) -->
+  <div class="slider-container">
+    <button class="slider-btn prev-btn"><i data-lucide="chevron-left"></i></button>
+    <button class="slider-btn next-btn"><i data-lucide="chevron-right"></i></button>
     
-    <div class="category-grid">
+    <div class="slider-track" id="sliderTrack">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=80" alt="Industrial Tools">
+        <div class="slide-content">
+          <div class="slide-title">Precision Engineered Tools</div>
+          <p>Delivering high-torque performance to B2B professionals globally.</p>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1400&q=80" alt="Manufacturing">
+        <div class="slide-content">
+          <div class="slide-title">134th Canton Fair Exhibition</div>
+          <p>Join us at our booth to experience our latest heavy-duty machinery.</p>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1400&q=80" alt="Pallet Trucks">
+        <div class="slide-content">
+          <div class="slide-title">New Shifting Tools Catalog</div>
+          <p>Explore our expanded line of hydraulic pallet trucks and warehouse solutions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-dots">
+      <div class="dot active" onclick="goToSlide(0)"></div>
+      <div class="dot" onclick="goToSlide(1)"></div>
+      <div class="dot" onclick="goToSlide(2)"></div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <main class="layout-grid">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">CPOWER Tools by Catalogue</div>
+      <ul class="cat-menu">
+        <li><a href="#">Ratchet Socket Set <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Bits & Bits Set <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Socket & Accessary <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Drawer Tool Cabinet <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Pliers <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Hammers & Axes <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Adjustable Wrenches <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Screwdrivers <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Measuring Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Flashlight <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Shifting Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Labor Saving Plier <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+      </ul>
+
+      <div class="archive-section">
+        <div class="archive-title">Historical Catalogues</div>
+        <div class="archive-links">
+          <a href="#">2007</a> / <a href="#">2009</a> / <a href="#">2015</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Content Area -->
+    <section class="content">
       
-      <!-- Category 1 -->
-      <a href="#" class="category-card">
-        <img src="photos/measuring_tape.jpg" alt="Measuring Tools" class="category-img">
-        <div class="category-content">
-          <div class="category-title">Measurement & Precision <i data-lucide="arrow-right"></i></div>
-          <ul class="category-list">
-            <li>Tape Measures & Long Tapes</li>
-            <li>Digital Micrometers & Calipers</li>
-            <li>Aluminium & Torpedo Levels</li>
-            <li>Thickness Gauges & Squares</li>
-          </ul>
-        </div>
-      </a>
-
-      <!-- Category 2 -->
-      <a href="#" class="category-card">
-        <img src="photos/IndustrialBenchVise.png" alt="Industrial Bench Vise" class="category-img">
-        <div class="category-content">
-          <div class="category-title">Vises & Clamping <i data-lucide="arrow-right"></i></div>
-          <ul class="category-list">
-            <li>Industrial Bench Vises & Table Vises</li>
-            <li>Multi-purpose & Drill Press Vises</li>
-            <li>Forged Steel G Clamps & F Clamps</li>
-            <li>Quick Release & Heavy Duty Bar Clamps</li>
-          </ul>
-        </div>
-      </a>
-
-      <!-- Category 3 -->
-      <a href="#" class="category-card">
-        <img src="photos/CableDrunAuger.png" alt="Plumbing Tools" class="category-img">
-        <div class="category-content">
-          <div class="category-title">Plumbing & Shifting Tools <i data-lucide="arrow-right"></i></div>
-          <ul class="category-list">
-            <li>Cable Drum Augers & Drain Cleaners</li>
-            <li>Tube Cutters & Flaring Tools</li>
-            <li>Heavy Duty Pipe Wrenches</li>
-            <li>Hydraulic Pallet Trucks</li>
-          </ul>
-        </div>
-      </a>
-
-      <!-- Category 4 -->
-      <a href="#" class="category-card">
-        <img src="photos/Flashlights.png" alt="Flashlight" class="category-img">
-        <div class="category-content">
-          <div class="category-title">Site Illumination & Safety <i data-lucide="arrow-right"></i></div>
-          <ul class="category-list">
-            <li>Industrial Flashlights</li>
-            <li>LED Work Lights & Lanterns</li>
-            <li>Portable Site Illumination</li>
-            <li>Heavy Duty Housings</li>
-          </ul>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- The CPower Advantage -->
-  <section id="about" class="section" style="padding-top: 0;">
-    <div class="section-header" style="margin-bottom: 2rem;">
-      <span class="section-tag">The CPower Advantage</span>
-      <h2 class="section-title">Built for Performance. Engineered to Last.</h2>
-    </div>
-    
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="shield-check" style="width:24px;height:24px;"></i></div>
-        <h3>ISO & CE Certified</h3>
-        <p style="color: var(--text-light);">Every tool undergoes rigorous stress, thermal, and vibration testing at our Xi'an facility to meet strict international compliance standards.</p>
+      <!-- New Products List -->
+      <div class="content-header">
+        <h2 class="content-title">New Products</h2>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="globe-2" style="width:24px;height:24px;"></i></div>
-        <h3>Global Export Logistics</h3>
-        <p style="color: var(--text-light);">With offices in Xi'an and Hong Kong, we provide streamlined container shipping, ensuring rapid fulfillment across the Americas, Europe, and Asia.</p>
+      
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="photos/IndustrialBenchVise.png" alt="Bench Vise">
+          <div class="product-name">Heavy Duty Bench Vise</div>
+          <a href="#" class="btn-rfq">Add to Quote</a>
+        </div>
+        <div class="product-card">
+          <img src="photos/CableDrunAuger.png" alt="Drum Auger">
+          <div class="product-name">Cable Drum Auger</div>
+          <a href="#" class="btn-rfq">Add to Quote</a>
+        </div>
+        <div class="product-card">
+          <img src="photos/measuring_tape.jpg" alt="Tape Measure">
+          <div class="product-name">Nylon Coated Tape Measure</div>
+          <a href="#" class="btn-rfq">Add to Quote</a>
+        </div>
+        <div class="product-card">
+          <img src="photos/Flashlights.png" alt="Flashlights">
+          <div class="product-name">Industrial LED Flashlights</div>
+          <a href="#" class="btn-rfq">Add to Quote</a>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i data-lucide="cog" style="width:24px;height:24px;"></i></div>
-        <h3>OEM & ODM Services</h3>
-        <p style="color: var(--text-light);">Looking for custom branding? Our in-house R&D team can customize tooling specifications and packaging to match your precise brand requirements.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA Banner -->
-  <section class="cta-banner" id="catalog">
-    <h2>Ready to Upgrade Your Tooling?</h2>
-    <p>Download our complete digital catalog or speak directly with our international sales team for bulk pricing, specifications, and shipping estimates.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#" class="btn-primary" style="background:white;color:var(--dark);box-shadow:none;">Request a Catalog</a>
-      <a href="#contact" class="btn-primary">Contact Sales Team</a>
-    </div>
-  </section>
+      <!-- Corporate News -->
+      <div class="content-header">
+        <h2 class="content-title">Company News</h2>
+      </div>
+      
+      <div class="news-strip">
+        <div class="news-date">Upcoming Exhibition</div>
+        <div class="news-title">Canton Fair in the Autumn</div>
+        <div class="news-excerpt">
+          Cpower Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair 2023 in Canton, China. We invite all international partners to visit our booth to review our latest manufacturing capabilities.
+        </div>
+      </div>
+
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <img src="photos/logo.png" alt="Cpower Tools Logo" style="max-height: 40px; margin-bottom: 1.5rem;">
-        <p style="line-height: 1.8;">Manufacturer of professional hand tools, shifting tools, drawer tool cabinets, and machinery.</p>
-      </div>
-      
-      <div class="footer-col">
-        <h5>Quick Links</h5>
-        <ul style="list-style: none;">
-          <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Download Catalogue (PDF)</a></li>
-          <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">OEM / ODM Capabilities</a></li>
-          <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--text-light); text-decoration: none;">Quality Certifications</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h5>Contact Headquarters</h5>
-        <ul class="footer-contact">
-          <li><i data-lucide="map-pin" style="width:20px;height:20px;color:var(--primary);"></i> Address: D-2304 VAN METROPOLIS.NO.35 TANG YAN ROAD, XI'AN, CHINA</li>
-          <li><i data-lucide="phone" style="width:20px;height:20px;color:var(--primary);"></i> <span>Tel: 0086-29-88455900/88451686<br>Fax: 0086-29-88455902/88455922</span></li>
-          <li><i data-lucide="mail" style="width:20px;height:20px;color:var(--primary);"></i> E-mail: cpowertools@foxmail.com</li>
-        </ul>
-      </div>
+  <footer>
+    <div class="footer-links">
+      <a href="#">Home</a> ｜ 
+      <a href="#">About us</a> ｜ 
+      <a href="#">News</a> ｜ 
+      <a href="#">Products</a> ｜ 
+      <a href="#">New products</a> ｜ 
+      <a href="#">Download</a> ｜ 
+      <a href="#">Contact us</a>
     </div>
-    <div class="footer-bottom">
-      &copy; 2026 Cpower Tools & Machinery Co.Ltd. All rights reserved.
+    <div style="font-size: 0.9rem;">
+      Copyright @ 2005 CPOWER ALL rights reserved.
     </div>
   </footer>
 
   <script>
+    // Initialize Lucide Icons
     lucide.createIcons();
+
+    // Slider Logic
+    const track = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    const slideCount = 3;
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+      updateSlider();
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateSlider();
+    }
+
+    document.querySelector('.next-btn').addEventListener('click', nextSlide);
+    document.querySelector('.prev-btn').addEventListener('click', prevSlide);
+
+    // Auto-advance slider every 5 seconds
+    setInterval(nextSlide, 5000);
   </script>
 </body>
 </html>
