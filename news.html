@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company News | Cpower Tools & Machinery Co.Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --primary: #cc4400;       
+      --primary-hover: #a33600; 
+      --dark: #050505;          
+      --text-main: #262626;     
+      --text-light: #737373;    
+      --surface: #ffffff;
+      --bg-body: #f1f5f9;       
+      --border: #e2e8f0;
+      --transition: all 0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      background-color: var(--dark);
+      color: #a3a3a3;
+      font-size: 0.85rem;
+      padding: 0.5rem 2rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+
+    /* Main Navigation */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo img {
+      max-height: 45px;
+      display: block;
+    }
+    .main-menu {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .main-menu a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      transition: var(--transition);
+      padding: 0.5rem 0;
+    }
+    .main-menu a:hover, .main-menu a.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    /* Page Header Banner */
+    .page-header {
+      background: linear-gradient(to right, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.7) 100%), url('https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color: white;
+      padding: 4rem 2rem;
+      margin-bottom: 3rem;
+    }
+    .page-header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .breadcrumbs {
+      color: #a3a3a3;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .breadcrumbs a { color: white; text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--primary); }
+
+    /* Main Layout Grid */
+    .layout-grid {
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+    .sidebar-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dark);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary);
+    }
+    .cat-menu { list-style: none; }
+    .cat-menu li { margin-bottom: 0.25rem; }
+    .cat-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .cat-menu a:hover {
+      background: var(--bg-body);
+      color: var(--primary);
+      padding-left: 1rem;
+    }
+
+    /* Featured Article Area */
+    .article-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      margin-bottom: 4rem;
+    }
+    .article-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    
+    .article-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .article-body {
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .event-details {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem 2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+    }
+    .event-details ul { list-style: none; }
+    .event-details li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .event-details li i { color: var(--primary); }
+
+    /* Article Navigation */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-body);
+      color: var(--dark);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .btn-nav:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Recent News Grid */
+    .recent-news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid var(--dark);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .recent-news-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .news-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transform: translateY(-3px);
+    }
+    .news-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .news-card-date {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .news-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .news-card-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .news-card-link {
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+    .news-card-link:hover { color: var(--primary); }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: #a3a3a3;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: auto;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--primary); }
+    
+    @media (max-width: 1024px) {
+      .layout-grid { grid-template-columns: 1fr; }
+      .sidebar { position: static; margin-bottom: 2rem; }
+      .article-container { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility -->
+  <div class="top-bar">
+    <span>Tel: 0086-29-88455900</span>
+    <span>Email: jack.jia@cpowertoolsco.com</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="photos/cpowerlogo1.jpg" alt="Cpower Tools">
+      </a>
+      <ul class="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="news.html" class="active">News</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">New products</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">Company News</h1>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> &nbsp;/&nbsp; <span>News & Updates</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <main class="layout-grid">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">CPOWER Tools by Catalogue</div>
+      <ul class="cat-menu">
+        <li><a href="#">Ratchet Socket Set <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Bits & Bits Set <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Socket & Accessary <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Drawer Tool Cabinet <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Pliers <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Hammers & Axes <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Adjustable Wrenches <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Screwdrivers <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Measuring Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Flashlight <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Shifting Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+        <li><a href="#">Labor Saving Plier <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+      </ul>
+    </aside>
+
+    <!-- Right Content Area -->
+    <section class="content">
+      
+      <!-- Featured Article -->
+      <article class="article-container">
+        <h1 class="article-title">Canton Fair in the autumn of 2023</h1>
+        
+        <div class="article-meta">
+          <span><i data-lucide="calendar" style="width:16px; height:16px;"></i> September 15, 2023 15:22</span>
+          <span><i data-lucide="eye" style="width:16px; height:16px;"></i> 4478 Views</span>
+        </div>
+
+        <img src="photos/canton_fair_2023fall.png" alt="Cpower Tools Booth at 134th Canton Fair" class="article-hero-img">
+
+        <div class="article-body">
+          <p>Cpower Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair 2023 in Canton, China.</p>
+          
+          <div class="event-details">
+            <ul>
+              <li><i data-lucide="clock"></i> Time: From Oct. 15th to Oct. 19th, 2023</li>
+              <li><i data-lucide="tag"></i> Booth No.: 13.2C45-46</li>
+              <li><i data-lucide="map-pin"></i> Add: Guangzhou, China</li>
+            </ul>
+          </div>
+
+          <p>Welcome to visit our booth.</p>
+        </div>
+
+        <!-- Restored Article Navigation -->
+        <div class="article-nav">
+          <a href="#" class="btn-nav" style="opacity: 0.5; pointer-events: none;"><i data-lucide="arrow-left"></i> Previous</a>
+          <a href="#" class="btn-nav">Next Article <i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Recent News Grid -->
+      <div class="recent-news-header">
+        <h2 class="recent-news-title">More Company News</h2>
+      </div>
+
+      <div class="news-grid">
+        <!-- News Card 1 -->
+        <div class="news-card">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" alt="Factory Expansion" class="news-card-img">
+          <div class="news-card-content">
+            <div class="news-card-date">AUGUST 12, 2023</div>
+            <h3 class="news-card-title">New Manufacturing Line for High-Torque Ratchets</h3>
+            <p class="news-card-excerpt">We are expanding our Xi'an facility to include state-of-the-art automated forging for our premium socket sets.</p>
+            <a href="#" class="news-card-link">Read More <i data-lucide="arrow-right" style="width:16px;"></i></a>
+          </div>
+        </div>
+
+        <!-- News Card 2 -->
+        <div class="news-card">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Global Export" class="news-card-img">
+          <div class="news-card-content">
+            <div class="news-card-date">JULY 05, 2023</div>
+            <h3 class="news-card-title">ISO 9001:2015 Certification Renewed</h3>
+            <p class="news-card-excerpt">Cpower Tools continues its commitment to global quality standards with another successful annual compliance audit.</p>
+            <a href="#" class="news-card-link">Read More <i data-lucide="arrow-right" style="width:16px;"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a> ｜ 
+      <a href="#">About us</a> ｜ 
+      <a href="news.html">News</a> ｜ 
+      <a href="#">Products</a> ｜ 
+      <a href="#">New products</a> ｜ 
+      <a href="#">Download</a> ｜ 
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div style="font-size: 0.9rem;">
+      Copyright @ 2005 CPOWER ALL rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

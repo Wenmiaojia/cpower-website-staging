@@ -86,8 +86,8 @@
     .slider-container {
       position: relative;
       max-width: 1400px;
-      margin: 2rem auto;
-      height: 400px;
+      margin: 2rem auto 0;
+      height: 450px;
       overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -114,14 +114,14 @@
       width: 100%;
       background: linear-gradient(transparent, rgba(0,0,0,0.9));
       color: white;
-      padding: 3rem 2rem 2rem;
+      padding: 3rem 2rem 5rem;
     }
     .slide-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
     
     /* Slider Controls */
     .slider-btn {
       position: absolute;
-      top: 50%;
+      top: 45%;
       transform: translateY(-50%);
       background: rgba(0,0,0,0.5);
       color: white;
@@ -141,10 +141,11 @@
     .next-btn { right: 1rem; }
     .slider-dots {
       position: absolute;
-      bottom: 1rem;
+      bottom: 4rem;
       right: 2rem;
       display: flex;
       gap: 0.5rem;
+      z-index: 10;
     }
     .dot {
       width: 12px;
@@ -154,6 +155,46 @@
       cursor: pointer;
     }
     .dot.active { background: var(--primary); }
+
+    /* Corporate Bragging/Trust Banner */
+    .trust-banner {
+      max-width: 1400px;
+      margin: -2.5rem auto 4rem;
+      position: relative;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 0 2rem;
+    }
+    .trust-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      transition: var(--transition);
+    }
+    .trust-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+    .trust-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--bg-body);
+      color: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-text h4 { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.1rem; line-height: 1.2; }
+    .trust-text p { font-size: 0.85rem; color: var(--text-light); }
 
     /* Main Layout Grid */
     .layout-grid {
@@ -222,6 +263,79 @@
     }
     .content-title { font-size: 1.75rem; font-weight: 800; color: var(--dark); }
 
+    /* NEW: Company Profile & Global Reach Section */
+    .company-profile-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+    .profile-content h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .profile-content .highlight { color: var(--primary); }
+    .profile-content p {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    .profile-stats {
+      display: flex;
+      gap: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    .stat-item h5 { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+    .stat-item span { font-size: 0.85rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; }
+    
+    /* CSS Globe Map */
+    .global-map-visual {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') no-repeat center center;
+      background-size: contain;
+      opacity: 0.8;
+      position: relative;
+      border-radius: 8px;
+      min-height: 300px;
+    }
+    /* Animated Map Markers */
+    .map-marker {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .map-marker::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 50%;
+      z-index: -1;
+      animation: ripple 2s infinite ease-in-out;
+    }
+    /* Marker Locations */
+    .marker-na { top: 35%; left: 22%; } /* North America */
+    .marker-eu { top: 30%; left: 52%; } /* Europe */
+    .marker-as { top: 45%; left: 78%; } /* China/Asia */
+    .marker-sa { top: 70%; left: 32%; } /* South America */
+
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
     /* Product Grid */
     .product-grid {
       display: grid;
@@ -269,6 +383,13 @@
       padding: 1.5rem;
       border-radius: 0 8px 8px 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .news-strip:hover {
+      background: #f8fafc;
+      transform: translateX(5px);
     }
     .news-date { color: var(--primary); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem; }
     .news-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--dark); }
@@ -294,7 +415,12 @@
     @media (max-width: 1024px) {
       .layout-grid { grid-template-columns: 1fr; }
       .sidebar { position: static; margin-bottom: 2rem; }
-      .main-menu { display: none; } /* Would implement a hamburger menu here for production */
+      .trust-banner { grid-template-columns: repeat(2, 1fr); margin-top: 1rem; }
+      .company-profile-section { grid-template-columns: 1fr; }
+      .main-menu { display: none; }
+    }
+    @media (max-width: 600px) {
+      .trust-banner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -303,23 +429,23 @@
   <!-- Top Utility -->
   <div class="top-bar">
     <span>Tel: 0086-29-88455900</span>
-    <span>Email: cpowertools@foxmail.com</span>
+    <span>Email: jack.jia@cpowertoolsco.com</span>
   </div>
 
   <!-- Header -->
   <header>
     <div class="nav-container">
-      <a href="#" class="brand-logo">
-        <img src="photos/logo.png" alt="Cpower Tools">
+      <a href="index.html" class="brand-logo">
+        <img src="photos/cpowerlogo1.jpg" alt="Cpower Tools">
       </a>
       <ul class="main-menu">
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="#">About us</a></li>
-        <li><a href="#">News</a></li>
+        <li><a href="news.html">News</a></li>
         <li><a href="#">Products</a></li>
         <li><a href="#">New products</a></li>
         <li><a href="#">Download</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="contact.html">Contact us</a></li>
       </ul>
     </div>
   </header>
@@ -330,7 +456,6 @@
     <button class="slider-btn next-btn"><i data-lucide="chevron-right"></i></button>
     
     <div class="slider-track" id="sliderTrack">
-      <!-- Slide 1 -->
       <div class="slide">
         <img src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=80" alt="Industrial Tools">
         <div class="slide-content">
@@ -338,7 +463,6 @@
           <p>Delivering high-torque performance to B2B professionals globally.</p>
         </div>
       </div>
-      <!-- Slide 2 -->
       <div class="slide">
         <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1400&q=80" alt="Manufacturing">
         <div class="slide-content">
@@ -346,7 +470,6 @@
           <p>Join us at our booth to experience our latest heavy-duty machinery.</p>
         </div>
       </div>
-      <!-- Slide 3 -->
       <div class="slide">
         <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1400&q=80" alt="Pallet Trucks">
         <div class="slide-content">
@@ -360,6 +483,38 @@
       <div class="dot active" onclick="goToSlide(0)"></div>
       <div class="dot" onclick="goToSlide(1)"></div>
       <div class="dot" onclick="goToSlide(2)"></div>
+    </div>
+  </div>
+
+  <!-- Corporate Bragging Banner -->
+  <div class="trust-banner">
+    <div class="trust-card">
+      <div class="trust-icon"><i data-lucide="award" style="width: 24px; height: 24px;"></i></div>
+      <div class="trust-text">
+        <h4>Est. 2007</h4>
+        <p>15+ Years of Excellence</p>
+      </div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i data-lucide="globe-2" style="width: 24px; height: 24px;"></i></div>
+      <div class="trust-text">
+        <h4>Global Reach</h4>
+        <p>Exporting to 50+ Countries</p>
+      </div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i data-lucide="shield-check" style="width: 24px; height: 24px;"></i></div>
+      <div class="trust-text">
+        <h4>ISO & CE Certified</h4>
+        <p>Strict Quality Control</p>
+      </div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i data-lucide="pen-tool" style="width: 24px; height: 24px;"></i></div>
+      <div class="trust-text">
+        <h4>OEM & ODM</h4>
+        <p>Custom Tooling Services</p>
+      </div>
     </div>
   </div>
 
@@ -395,46 +550,80 @@
     <!-- Right Content Area -->
     <section class="content">
       
+      <!-- NEW: Corporate Profile & Global Reach -->
+      <div class="company-profile-section">
+        <div class="profile-content">
+          <h2>Powering Industry <br><span class="highlight">Since 2007</span></h2>
+          <p>
+            Officially established in August 2007 as <strong>Xi'an Liding Energy Technology Co., Ltd.</strong>, we are headquartered in the prestigious Xi'an High-Tech Industrial Development Zone. 
+          </p>
+          <p>
+            We specialize in technological consulting, new materials, and the international export of premium industrial hardware. From heavy-duty mechanics to shifting equipment, our robust manufacturing supply chain meets stringent compliance standards required by the most competitive global markets.
+          </p>
+          <div class="profile-stats">
+            <div class="stat-item">
+              <h5>¥2.8M</h5>
+              <span>Registered Capital</span>
+            </div>
+            <div class="stat-item">
+              <h5>50+</h5>
+              <span>Export Nations</span>
+            </div>
+            <div class="stat-item">
+              <h5>100%</h5>
+              <span>Export Compliance</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="global-map-visual">
+          <div class="map-marker marker-na" title="North America"></div>
+          <div class="map-marker marker-eu" title="Europe"></div>
+          <div class="map-marker marker-as" title="Asia/Headquarters"></div>
+          <div class="map-marker marker-sa" title="South America"></div>
+        </div>
+      </div>
+
       <!-- New Products List -->
       <div class="content-header">
-        <h2 class="content-title">New Products</h2>
+        <h2 class="content-title">Featured Products</h2>
       </div>
       
       <div class="product-grid">
         <div class="product-card">
           <img src="photos/IndustrialBenchVise.png" alt="Bench Vise">
           <div class="product-name">Heavy Duty Bench Vise</div>
-          <a href="#" class="btn-rfq">Add to Quote</a>
+          <a href="contact.html" class="btn-rfq">Request Quote</a>
         </div>
         <div class="product-card">
           <img src="photos/CableDrunAuger.png" alt="Drum Auger">
           <div class="product-name">Cable Drum Auger</div>
-          <a href="#" class="btn-rfq">Add to Quote</a>
+          <a href="contact.html" class="btn-rfq">Request Quote</a>
         </div>
         <div class="product-card">
           <img src="photos/measuring_tape.jpg" alt="Tape Measure">
           <div class="product-name">Nylon Coated Tape Measure</div>
-          <a href="#" class="btn-rfq">Add to Quote</a>
+          <a href="contact.html" class="btn-rfq">Request Quote</a>
         </div>
         <div class="product-card">
           <img src="photos/Flashlights.png" alt="Flashlights">
           <div class="product-name">Industrial LED Flashlights</div>
-          <a href="#" class="btn-rfq">Add to Quote</a>
+          <a href="contact.html" class="btn-rfq">Request Quote</a>
         </div>
       </div>
 
-      <!-- Corporate News -->
-      <div class="content-header">
-        <h2 class="content-title">Company News</h2>
+      <!-- Corporate News connected to news.html -->
+      <div class="content-header" style="margin-top: 2rem;">
+        <h2 class="content-title">Latest Updates</h2>
       </div>
       
-      <div class="news-strip">
-        <div class="news-date">Upcoming Exhibition</div>
-        <div class="news-title">Canton Fair in the Autumn</div>
+      <a href="news.html" class="news-strip">
+        <div class="news-date">Exhibition Profile &middot; Sept 15, 2023</div>
+        <div class="news-title">Canton Fair in the Autumn of 2023</div>
         <div class="news-excerpt">
-          Cpower Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair 2023 in Canton, China. We invite all international partners to visit our booth to review our latest manufacturing capabilities.
+          Cpower Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair 2023 in Canton, China. Click here for booth details and scheduling.
         </div>
-      </div>
+      </a>
 
     </section>
   </main>
@@ -442,16 +631,16 @@
   <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="#">Home</a> ｜ 
+      <a href="index.html">Home</a> ｜ 
       <a href="#">About us</a> ｜ 
-      <a href="#">News</a> ｜ 
+      <a href="news.html">News</a> ｜ 
       <a href="#">Products</a> ｜ 
       <a href="#">New products</a> ｜ 
       <a href="#">Download</a> ｜ 
-      <a href="#">Contact us</a>
+      <a href="contact.html">Contact us</a>
     </div>
     <div style="font-size: 0.9rem;">
-      Copyright @ 2005 CPOWER ALL rights reserved.
+      Copyright @ 2007 CPOWER ALL rights reserved.
     </div>
   </footer>
 
