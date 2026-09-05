@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | Cpower Tools & Machinery Co.Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --primary: #cc4400;       
+      --primary-hover: #a33600; 
+      --dark: #050505;          
+      --text-main: #262626;     
+      --text-light: #737373;    
+      --surface: #ffffff;
+      --bg-body: #f1f5f9;       
+      --border: #e2e8f0;
+      --transition: all 0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+    /* Top Utility Bar */
+    .top-bar { background-color: var(--dark); color: #a3a3a3; font-size: 0.85rem; padding: 0.5rem 2rem; display: flex; justify-content: flex-end; gap: 1.5rem; }
+
+    /* Main Navigation */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .brand-logo img { max-height: 45px; display: block; }
+    .main-menu { display: flex; gap: 1.5rem; list-style: none; }
+    .main-menu a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); padding: 0.5rem 0; }
+    .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+    /* Page Header Banner */
+    .page-header { background: linear-gradient(to right, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.7) 100%), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=80') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
+    .page-header-inner { max-width: 1400px; margin: 0 auto; }
+    .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .breadcrumbs { color: #a3a3a3; font-size: 0.9rem; font-weight: 500; }
+    .breadcrumbs a { color: white; text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--primary); }
+
+    /* Main Layout Grid */
+    .layout-grid { max-width: 1400px; margin: 0 auto 4rem; padding: 0 2rem; display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; }
+
+    /* Left Sidebar */
+    .sidebar { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; height: fit-content; position: sticky; top: 90px; }
+    .sidebar-title { font-size: 1.1rem; font-weight: 800; color: var(--dark); padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); }
+    .cat-menu { list-style: none; }
+    .cat-menu li { margin-bottom: 0.25rem; }
+    .cat-menu a { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-main); font-size: 0.95rem; font-weight: 500; padding: 0.6rem 0.5rem; border-radius: 6px; transition: var(--transition); }
+    .cat-menu a:hover { background: var(--bg-body); color: var(--primary); padding-left: 1rem; }
+
+    /* Product Grid */
+    .content-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--dark); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+    .content-title { font-size: 1.75rem; font-weight: 800; color: var(--dark); }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; transition: var(--transition); display: flex; flex-direction: column; }
+    .product-card:hover { border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transform: translateY(-3px); }
+    .product-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 1rem; border-radius: 4px; }
+    .product-name { font-weight: 700; color: var(--dark); font-size: 1rem; margin-bottom: 1rem; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .btn-rfq { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.6rem; background: var(--bg-body); color: var(--primary); font-weight: 700; font-size: 0.9rem; text-decoration: none; border-radius: 4px; transition: var(--transition); }
+    .btn-rfq:hover { background: var(--primary); color: white; }
+
+    /* Individual Detail Page Styles */
+    .detail-container { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-light); text-decoration: none; font-weight: 700; font-size: 0.95rem; margin-bottom: 2rem; transition: var(--transition); }
+    .back-link:hover { color: var(--primary); }
+    .detail-image { width: 100%; max-width: 450px; height: auto; object-fit: contain; display: block; margin: 0 auto 2rem auto; }
+    .detail-title { font-size: 2rem; font-weight: 800; color: var(--dark); border-bottom: 2px solid var(--bg-body); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .detail-specs { line-height: 1.8; color: var(--text-main); font-size: 1.05rem; white-space: pre-wrap; margin-bottom: 2.5rem; }
+    .btn-quote { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary); color: white; padding: 1rem 2rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: var(--transition); font-size: 1.1rem; }
+    .btn-quote:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(204, 68, 0, 0.2); }
+
+    @media (max-width: 1024px) { .layout-grid { grid-template-columns: 1fr; } .sidebar { position: static; margin-bottom: 2rem; } .main-menu { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <span>Tel: 0086-29-88455900</span>
+    <span>Email: jack.jia@cpowertoolsco.com</span>
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <h2 style="color: var(--primary); margin:0;">CPOWER</h2>
+      </a>
+      <ul class="main-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="../news.html">News</a></li>
+        <li><a href="../products.html" class="active">Products</a></li>
+        <li><a href="../contact.html">Contact us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">Industrial Tool Catalog</h1>
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &nbsp;/&nbsp; <span>Products</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="layout-grid">
+    
+    <!-- Functional Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">CPOWER Categories</div>
+      <ul class="cat-menu">
+        <li><a href="../products.html?category=all" class="filter-btn" data-filter="all">All Products <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=sockets" class="filter-btn" data-filter="sockets">Ratchet & Socket Sets <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=bits" class="filter-btn" data-filter="bits">Bits & Accessories <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=pliers" class="filter-btn" data-filter="pliers">Pliers & Cutters <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=hammers" class="filter-btn" data-filter="hammers">Hammers & Axes <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=wrenches" class="filter-btn" data-filter="wrenches">Wrenches & Spanners <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=screwdrivers" class="filter-btn" data-filter="screwdrivers">Screwdrivers <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=measuring" class="filter-btn" data-filter="measuring">Measuring Tools <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=cabinets" class="filter-btn" data-filter="cabinets">Tool Cabinets <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=flashlights" class="filter-btn" data-filter="flashlights">Flashlights <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=shifting" class="filter-btn" data-filter="shifting">Shifting Tools <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=other" class="filter-btn" data-filter="other">Miscellaneous <i data-lucide="chevron-right"></i></a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+
+        <div class="detail-container">
+            <a href="../products.html?category=shifting" class="back-link">
+                <i data-lucide="arrow-left" style="width: 18px;"></i> Back to Shifting
+            </a>
+            <img class="detail-image" src="../web_ready_images/sku_18.jpg" alt="Stainless Steel Pallet Truck">
+            <h1 class="detail-title">Stainless Steel Pallet Truck</h1>
+            <div class="detail-specs">Stainless Steel Pallet Truck | Time： | 2015-8-27 11:22:14 | Click： | 3097 | Previous | Next | Previous | Next</div>
+            
+            <a href="mailto:jack.jia@cpowertoolsco.com?subject=Wholesale Quote Request: Stainless Steel Pallet Truck" class="btn-quote">
+                Request Bulk Quote <i data-lucide="mail" style="width: 20px;"></i>
+            </a>
+        </div>
+    
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a> ｜ 
+      <a href="../products.html">Products</a> ｜ 
+      <a href="../contact.html">Contact us</a>
+    </div>
+    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Application-like Filtering Logic
+    document.addEventListener("DOMContentLoaded", function() {
+      const productCards = document.querySelectorAll('.product-card');
+      
+      // If there are no product cards, we are on a detail page. The script will safely abort here.
+      if (productCards.length === 0) return; 
+
+      const urlParams = new URLSearchParams(window.location.search);
+      let activeCategory = urlParams.get('category') || 'all';
+
+      function applyFilter(category) {
+        // Show/Hide Cards
+        productCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update Sidebar Active State
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+           if(btn.getAttribute('data-filter') === category) {
+               btn.style.color = 'var(--primary)';
+               btn.style.fontWeight = '800';
+           } else {
+               btn.style.color = 'var(--text-main)';
+               btn.style.fontWeight = '500';
+           }
+        });
+      }
+
+      // 1. Run the filter on initial page load based on the URL parameter
+      applyFilter(activeCategory);
+
+      // 2. Intercept sidebar clicks to update instantly without refreshing the page
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault(); 
+          const cat = this.getAttribute('data-filter');
+          
+          // Modify the URL seamlessly
+          const newUrl = window.location.pathname + '?category=' + cat;
+          window.history.pushState({path:newUrl}, '', newUrl);
+          
+          applyFilter(cat);
+          
+          // Scroll back to the top of the grid smoothly
+          document.querySelector('.content-header').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
