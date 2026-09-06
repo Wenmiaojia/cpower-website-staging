@@ -1,11 +1,13 @@
 import os
 import pandas as pd
 
-# Load the scraped data
 df = pd.read_csv("cpower_website_scrape.csv")
+df = df[df['sku_title'].notna()]
+df = df[df['sku_title'].astype(str) != 'nan']
+df = df.reset_index(drop=True)
+
 os.makedirs("product_pages", exist_ok=True)
 
-# 1. Simple auto-categorizer based on the tool's name
 def assign_category(title):
     t = str(title).lower()
     if 'socket' in t or 'ratchet' in t or 'rachet' in t or 't bar' in t or 'extension' in t: return 'sockets'
@@ -20,40 +22,13 @@ def assign_category(title):
     if 'truck' in t or 'pallet' in t: return 'shifting'
     return 'other'
 
-# ==========================================
-# 2. TEMPLATE: GLOBAL HEAD, NAV, AND SIDEBAR
-# ==========================================
-html_top = """<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | Cpower Tools & Machinery Co.Ltd</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+CSS_STYLES = """
   <style>
-    :root {
-      --primary: #cc4400;       
-      --primary-hover: #a33600; 
-      --dark: #050505;          
-      --text-main: #262626;     
-      --text-light: #737373;    
-      --surface: #ffffff;
-      --bg-body: #f1f5f9;       
-      --border: #e2e8f0;
-      --transition: all 0.3s ease;
-    }
-
+    :root { --primary: #cc4400; --primary-hover: #a33600; --dark: #050505; --text-main: #262626; --text-light: #737373; --surface: #ffffff; --bg-body: #f1f5f9; --border: #e2e8f0; --transition: all 0.3s ease; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
-
-    /* Top Utility Bar */
+    
     .top-bar { background-color: var(--dark); color: #a3a3a3; font-size: 0.85rem; padding: 0.5rem 2rem; display: flex; justify-content: flex-end; gap: 1.5rem; }
-
-    /* Main Navigation */
     header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .brand-logo img { max-height: 45px; display: block; }
@@ -61,28 +36,23 @@ html_top = """<!DOCTYPE html>
     .main-menu a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); padding: 0.5rem 0; }
     .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
-    /* Page Header Banner */
     .page-header { background: linear-gradient(to right, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.7) 100%), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=80') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
     .page-header-inner { max-width: 1400px; margin: 0 auto; }
     .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
     .breadcrumbs { color: #a3a3a3; font-size: 0.9rem; font-weight: 500; }
     .breadcrumbs a { color: white; text-decoration: none; }
     .breadcrumbs a:hover { color: var(--primary); }
-
-    /* Main Layout Grid */
+    
     .layout-grid { max-width: 1400px; margin: 0 auto 4rem; padding: 0 2rem; display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; }
-
-    /* Left Sidebar */
     .sidebar { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; height: fit-content; position: sticky; top: 90px; }
     .sidebar-title { font-size: 1.1rem; font-weight: 800; color: var(--dark); padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); }
     .cat-menu { list-style: none; }
-    .cat-menu li { margin-bottom: 0.25rem; }
     .cat-menu a { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-main); font-size: 0.95rem; font-weight: 500; padding: 0.6rem 0.5rem; border-radius: 6px; transition: var(--transition); }
     .cat-menu a:hover { background: var(--bg-body); color: var(--primary); padding-left: 1rem; }
 
-    /* Product Grid */
-    .content-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--dark); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+    .content-header { border-bottom: 2px solid var(--dark); padding-bottom: 0.5rem; margin-bottom: 2rem; }
     .content-title { font-size: 1.75rem; font-weight: 800; color: var(--dark); }
+
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
     .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; transition: var(--transition); display: flex; flex-direction: column; }
     .product-card:hover { border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transform: translateY(-3px); }
@@ -91,21 +61,31 @@ html_top = """<!DOCTYPE html>
     .btn-rfq { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.6rem; background: var(--bg-body); color: var(--primary); font-weight: 700; font-size: 0.9rem; text-decoration: none; border-radius: 4px; transition: var(--transition); }
     .btn-rfq:hover { background: var(--primary); color: white; }
 
-    /* Individual Detail Page Styles */
     .detail-container { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
     .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-light); text-decoration: none; font-weight: 700; font-size: 0.95rem; margin-bottom: 2rem; transition: var(--transition); }
     .back-link:hover { color: var(--primary); }
     .detail-image { width: 100%; max-width: 450px; height: auto; object-fit: contain; display: block; margin: 0 auto 2rem auto; }
     .detail-title { font-size: 2rem; font-weight: 800; color: var(--dark); border-bottom: 2px solid var(--bg-body); padding-bottom: 1rem; margin-bottom: 1.5rem; }
     .detail-specs { line-height: 1.8; color: var(--text-main); font-size: 1.05rem; white-space: pre-wrap; margin-bottom: 2.5rem; }
-    .btn-quote { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary); color: white; padding: 1rem 2rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: var(--transition); font-size: 1.1rem; }
+    .btn-quote { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary); color: white; padding: 1rem 2rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: var(--transition); font-size: 1.1rem; margin-bottom: 2rem; }
     .btn-quote:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(204, 68, 0, 0.2); }
+    
+    .page-nav { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 2rem; }
+    .nav-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--dark); text-decoration: none; transition: var(--transition); }
+    .nav-btn:hover { color: var(--primary); }
+
+    footer { background: var(--dark); color: #a3a3a3; padding: 3rem 2rem; text-align: center; margin-top: auto; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--primary); }
 
     @media (max-width: 1024px) { .layout-grid { grid-template-columns: 1fr; } .sidebar { position: static; margin-bottom: 2rem; } .main-menu { display: none; } }
   </style>
-</head>
-<body>
+"""
 
+# The layout templates have {root_path} dynamically assigned
+def get_global_header(root_path):
+    return f"""
   <div class="top-bar">
     <span>Tel: 0086-29-88455900</span>
     <span>Email: jack.jia@cpowertoolsco.com</span>
@@ -113,136 +93,49 @@ html_top = """<!DOCTYPE html>
 
   <header>
     <div class="nav-container">
-      <a href="{root_path}index.html" class="brand-logo">
-        <h2 style="color: var(--primary); margin:0;">CPOWER</h2>
+      <a href="{root_path}index.html">
+        <img src="{root_path}photos/cpowerlogo1.jpg" alt="Cpower Tools" width="150">
       </a>
       <ul class="main-menu">
         <li><a href="{root_path}index.html">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="{root_path}news.html">News</a></li>
-        <li><a href="{root_path}products.html" class="active">Products</a></li>
+        <li><a href="{root_path}old_web_sources/products.html" class="active">Products</a></li>
+        <li><a href="#">New Products</a></li>
+        <li><a href="#">Download</a></li>
         <li><a href="{root_path}contact.html">Contact us</a></li>
       </ul>
     </div>
   </header>
-
-  <div class="page-header">
-    <div class="page-header-inner">
-      <h1 class="page-title">Industrial Tool Catalog</h1>
-      <div class="breadcrumbs">
-        <a href="{root_path}index.html">Home</a> &nbsp;/&nbsp; <span>Products</span>
-      </div>
-    </div>
-  </div>
-
-  <main class="layout-grid">
-    
-    <!-- Functional Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-title">CPOWER Categories</div>
-      <ul class="cat-menu">
-        <li><a href="{root_path}products.html?category=all" class="filter-btn" data-filter="all">All Products <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=sockets" class="filter-btn" data-filter="sockets">Ratchet & Socket Sets <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=bits" class="filter-btn" data-filter="bits">Bits & Accessories <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=pliers" class="filter-btn" data-filter="pliers">Pliers & Cutters <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=hammers" class="filter-btn" data-filter="hammers">Hammers & Axes <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=wrenches" class="filter-btn" data-filter="wrenches">Wrenches & Spanners <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=screwdrivers" class="filter-btn" data-filter="screwdrivers">Screwdrivers <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=measuring" class="filter-btn" data-filter="measuring">Measuring Tools <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=cabinets" class="filter-btn" data-filter="cabinets">Tool Cabinets <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=flashlights" class="filter-btn" data-filter="flashlights">Flashlights <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=shifting" class="filter-btn" data-filter="shifting">Shifting Tools <i data-lucide="chevron-right"></i></a></li>
-        <li><a href="{root_path}products.html?category=other" class="filter-btn" data-filter="other">Miscellaneous <i data-lucide="chevron-right"></i></a></li>
-      </ul>
-    </aside>
-
-    <section class="content">
 """
 
-# ==========================================
-# 3. TEMPLATE: GLOBAL FOOTER WITH JS FILTER
-# ==========================================
-html_bottom = """
-    </section>
-  </main>
-
+def get_global_footer(root_path):
+    return f"""
   <footer>
     <div class="footer-links">
       <a href="{root_path}index.html">Home</a> ｜ 
-      <a href="{root_path}products.html">Products</a> ｜ 
+      <a href="#">About us</a> ｜ 
+      <a href="{root_path}news.html">News</a> ｜ 
+      <a href="{root_path}old_web_sources/products.html">Products</a> ｜ 
+      <a href="#">New products</a> ｜ 
+      <a href="#">Download</a> ｜ 
       <a href="{root_path}contact.html">Contact us</a>
     </div>
     <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
   </footer>
-
-  <script>
-    lucide.createIcons();
-
-    // Application-like Filtering Logic
-    document.addEventListener("DOMContentLoaded", function() {
-      const productCards = document.querySelectorAll('.product-card');
-      
-      // If there are no product cards, we are on a detail page. The script will safely abort here.
-      if (productCards.length === 0) return; 
-
-      const urlParams = new URLSearchParams(window.location.search);
-      let activeCategory = urlParams.get('category') || 'all';
-
-      function applyFilter(category) {
-        // Show/Hide Cards
-        productCards.forEach(card => {
-          if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-
-        // Update Sidebar Active State
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-           if(btn.getAttribute('data-filter') === category) {
-               btn.style.color = 'var(--primary)';
-               btn.style.fontWeight = '800';
-           } else {
-               btn.style.color = 'var(--text-main)';
-               btn.style.fontWeight = '500';
-           }
-        });
-      }
-
-      // 1. Run the filter on initial page load based on the URL parameter
-      applyFilter(activeCategory);
-
-      // 2. Intercept sidebar clicks to update instantly without refreshing the page
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault(); 
-          const cat = this.getAttribute('data-filter');
-          
-          // Modify the URL seamlessly
-          const newUrl = window.location.pathname + '?category=' + cat;
-          window.history.pushState({path:newUrl}, '', newUrl);
-          
-          applyFilter(cat);
-          
-          // Scroll back to the top of the grid smoothly
-          document.querySelector('.content-header').scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+  <script>lucide.createIcons();</script>
 """
 
-print("Generating auto-categorized catalog...")
+print("Generating Master Catalog and Individual Tool Pages...")
 
-master_cards = """
-      <div class="content-header">
+master_cards_html = """
+    <div class="content-header">
         <h2 class="content-title">Complete Tool Directory</h2>
-      </div>
-      <div class="product-grid">
+    </div>
+    <div class="product-grid" id="productGrid">
 """
+
+total_rows = len(df)
 
 for index, row in df.iterrows():
     title = str(row['sku_title']).strip()
@@ -250,17 +143,17 @@ for index, row in df.iterrows():
     img_file = str(row['image_file']).strip()
     prod_id = row.get('product_id', index) 
     
-    if title == 'nan' or not title:
-        continue
-        
-    # Analyze the title to determine its category automatically
     category = assign_category(title)
-    
     page_filename = f"sku_{prod_id}.html"
     page_filepath = os.path.join("product_pages", page_filename)
 
-    # Inject the data-category attribute into the HTML card
-    master_cards += f"""
+    prev_idx = index - 1 if index > 0 else total_rows - 1
+    next_idx = index + 1 if index < total_rows - 1 else 0
+    prev_id = df.iloc[prev_idx].get('product_id', prev_idx)
+    next_id = df.iloc[next_idx].get('product_id', next_idx)
+
+    # Master Grid Card
+    master_cards_html += f"""
         <div class="product-card" data-category="{category}">
           <img src="web_ready_images/{img_file}" alt="{title}" loading="lazy">
           <div class="product-name" title="{title}">{title}</div>
@@ -270,11 +163,51 @@ for index, row in df.iterrows():
         </div>
     """
 
-    detail_content = f"""
+    # --- SUB-PAGE GENERATION ---
+    # We pass "../../" here because product_pages/ is 2 levels deep from your root folder!
+    tool_page_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} | CPOWER TOOLS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  {CSS_STYLES}
+</head>
+<body>
+
+  {get_global_header("../../")}
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">{title}</h1>
+      <div class="breadcrumbs">
+        <a href="../products.html">Products</a> &nbsp;/&nbsp; <a href="../products.html?category={category}">{category.capitalize()}</a> &nbsp;/&nbsp; <span>{title}</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="layout-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">CPOWER Categories</div>
+      <ul class="cat-menu">
+        <li><a href="../products.html?category=all">All Products <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=sockets">Ratchet & Socket Sets <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=bits">Bits & Accessories <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=pliers">Pliers & Cutters <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=hammers">Hammers & Axes <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=wrenches">Wrenches & Spanners <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="../products.html?category=screwdrivers">Screwdrivers <i data-lucide="chevron-right"></i></a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
         <div class="detail-container">
             <a href="../products.html?category={category}" class="back-link">
-                <i data-lucide="arrow-left" style="width: 18px;"></i> Back to {category.capitalize()}
+                <i data-lucide="arrow-left" style="width: 18px;"></i> Back to {category.capitalize()} Directory
             </a>
+            
             <img class="detail-image" src="../web_ready_images/{img_file}" alt="{title}">
             <h1 class="detail-title">{title}</h1>
             <div class="detail-specs">{desc}</div>
@@ -282,15 +215,105 @@ for index, row in df.iterrows():
             <a href="mailto:jack.jia@cpowertoolsco.com?subject=Wholesale Quote Request: {title}" class="btn-quote">
                 Request Bulk Quote <i data-lucide="mail" style="width: 20px;"></i>
             </a>
-        </div>
-    """
-    
-    with open(page_filepath, "w", encoding="utf-8") as f:
-        f.write(html_top.replace('{root_path}', '../') + detail_content + html_bottom.replace('{root_path}', '../'))
 
-master_cards += '</div>\n'
+            <div class="page-nav">
+                <a href="sku_{prev_id}.html" class="nav-btn"><i data-lucide="arrow-left"></i> Previous Tool</a>
+                <a href="sku_{next_id}.html" class="nav-btn">Next Tool <i data-lucide="arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  {get_global_footer("../../")}
+
+</body>
+</html>"""
+
+    with open(page_filepath, "w", encoding="utf-8") as f:
+        f.write(tool_page_html)
+
+master_cards_html += '</div>\n'
+
+# --- MASTER DIRECTORY GENERATION ---
+# We pass "../" here because products.html is 1 level deep from your root folder!
+master_page_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products Directory | CPOWER TOOLS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  {CSS_STYLES}
+</head>
+<body>
+
+  {get_global_header("../")}
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">Industrial Tool Catalog</h1>
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &nbsp;/&nbsp; <span>Products</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="layout-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">CPOWER Categories</div>
+      <ul class="cat-menu">
+        <li><a href="#" class="filter-btn" data-filter="all">All Products <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="sockets">Ratchet & Socket Sets <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="bits">Bits & Accessories <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="pliers">Pliers & Cutters <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="hammers">Hammers & Axes <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="wrenches">Wrenches & Spanners <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="screwdrivers">Screwdrivers <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="measuring">Measuring Tools <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="cabinets">Tool Cabinets <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="flashlights">Flashlights <i data-lucide="chevron-right"></i></a></li>
+        <li><a href="#" class="filter-btn" data-filter="shifting">Shifting Tools <i data-lucide="chevron-right"></i></a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+        {master_cards_html}
+    </section>
+  </main>
+
+  {get_global_footer("../")}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {{
+      const productCards = document.querySelectorAll('.product-card');
+      const urlParams = new URLSearchParams(window.location.search);
+      let activeCategory = urlParams.get('category') || 'all';
+
+      function applyFilter(category) {{
+        productCards.forEach(card => {{
+          card.style.display = (category === 'all' || card.getAttribute('data-category') === category) ? 'flex' : 'none';
+        }});
+      }}
+
+      applyFilter(activeCategory);
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {{
+        btn.addEventListener('click', function(e) {{
+          e.preventDefault(); 
+          const cat = this.getAttribute('data-filter');
+          const newUrl = window.location.pathname + '?category=' + cat;
+          window.history.pushState({{path:newUrl}}, '', newUrl);
+          applyFilter(cat);
+          document.querySelector('.content-header').scrollIntoView({{ behavior: 'smooth' }});
+        }});
+      }});
+    }});
+  </script>
+</body>
+</html>"""
 
 with open("products.html", "w", encoding="utf-8") as f:
-    f.write(html_top.replace('{root_path}', '') + master_cards + html_bottom.replace('{root_path}', ''))
+    f.write(master_page_html)
 
-print("Database linked! Open 'products.html' and test the sidebar filters.")
+print("Process Complete! Open a tool page. Your logo and navigation paths are permanently fixed.")
