@@ -1,0 +1,107 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	CPOWER TOOLS CO., LTD
+</title><meta name="keywords" content="CPOWER TOOLS CO., LTD" /><meta name="description" content="CPOWER TOOLS CO., LTD" /><link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="scripts/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#banner').cycle({
+            fx: 'scrollLeft',
+            pager: '#btn'
+        });
+    })
+</script>
+    
+</head>
+<body>
+    <form method="post" action="./" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="s3Z9p6NfUaqL1tqS5CiEKUiI9klNG6ncpIvAuIYjovVzOMaU8gIq5ZiqtMjrGZqOIHrIuzLdE4xcHdYqrG9BezSxobddTDow2wsWgeaLHqWVorhoBy2MJ1B9FplF5d6bJv9Pcju8A0qTwtvyo/+6Uw==" />
+</div>
+        <div class="top">
+            <img class="logo" src="images/logo.png" width="308" height="124" alt="logo" />
+        </div>
+        <div class="nav">
+            <div class="nav_menu">
+                <span id="Label1"><a href="Default.aspx">Home</a><a href="About.aspx?Id=6">About us</a><a href="News.aspx?Id=5">News</a><a href="Product.aspx?Id=12">Products</a><a href="NewProduct.aspx?Id=3">New products</a><a href="Download.aspx?Id=2">Download</a><a href="Contact.aspx?Id=1">Contact us</a><a id="end"></a></span>
+     
+            </div>
+            <div class="search">
+                <input name="ctl00$TextBox1" type="text" maxlength="50" id="TextBox1" class="text1" style="width:201px;" />
+                <input type="image" name="ctl00$ImageButton1" id="ImageButton1" class="search_btn" src="images/search_btn.png" />
+            </div>
+        </div>
+          <div class="banner_box">
+    <div id="banner">
+      <a href="ProductDetail.aspx?id=292"><img src="/UploadFile/20231013213925938_MX52.png" width="944" height="359" /></a><a href="ProductDetail.aspx?id=173"><img src="/UploadFile/2015916161913734_DNF9.png" width="944" height="359" /></a><a href="ProductDetail.aspx?id=233"><img src="/UploadFile/2024111995516743_1P2Z.png" width="944" height="359" /></a><a href="ProductDetail.aspx?id=267"><img src="/UploadFile/2015916161828144_R0UE.png" width="944" height="359" /></a><a href="ProductDetail.aspx?id=169"><img src="/UploadFile/201591616186874_V5Y6.png" width="944" height="359" /></a>
+    </div>
+    <div id="btn"></div>
+  </div>
+    <div class="line"></div>
+    
+      <div class="main main_line_y">
+    <div class="dir dir01">
+      <h1><a href="#">CPOWER Tools by Catalogue</a></h1>
+        <span id="ContentPlaceHolder1_Label2"><ul><li><a href="NewProduct.aspx?Id=13">new products</a></li>
+<li><a href="Product.aspx?Id=12">Ratchet Socket Set</a></li>
+<li><a href="Product.aspx?Id=11">Bits & Bits Set</a></li>
+<li><a href="Product.aspx?Id=10">Socket & Accessary</a></li>
+</ul><ul><li><a href="Product.aspx?Id=9">Drawer Tool Cabinet</a></li>
+<li><a href="Product.aspx?Id=8">Pliers</a></li>
+<li><a href="Product.aspx?Id=7">Hammers & Axes</a></li>
+<li><a href="Product.aspx?Id=6">Adjustable Wrenches & Sp...</a></li>
+</ul><ul><li><a href="Product.aspx?Id=5">Screwdrivers</a></li>
+<li><a href="Product.aspx?Id=4">Measuring Tools</a></li>
+<li><a href="Product.aspx?Id=3">Flashlight</a></li>
+<li><a href="Product.aspx?Id=2">Shifting Tools</a></li>
+</ul><ul><li><a href="Product.aspx?Id=1">Labor Saving Plier</a></li>
+</span>
+      
+    </div>
+    <div class="dir dir02">
+      <a href="DownloadDetail.aspx?id=15"><img src="images/download_pic.png" width="345" height="186" /></a>
+    </div>
+    <div class="line_x line_x01"></div>
+    <div class="line_x line_x02"></div>
+    <div class="dir dir03">
+      <h1><a href="#">Catalogue 2007 / 2009 / 2015</a></h1>
+      <ul>
+        <li><a href="DownloadDetail.aspx?id=13"><img src="images/dir03_pic01.png" width="138" height="228" /></a></li>
+        <li><a href="DownloadDetail.aspx?id=12"><img src="images/dir03_pic02.png" width="138" height="228" /></a></li>
+        <li><a href="DownloadDetail.aspx?id=11"><img src="images/dir03_pic03.png" width="138" height="228" /></a></li>
+      </ul>
+    </div>
+    <div class="dir dir04">
+        <span id="ContentPlaceHolder1_Label1"><h1><a href="NewsDetail.aspx?id=14">Canton Fair in the autumn ...</a></h1><a href="NewsDetail.aspx?id=14"> Cpower Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair 2023 in conton,China...</a><a href="NewsDetail.aspx?id=14"><img src="/kindeditor-4.1.10/attached/image/20231103/20231103150502_3457.jpg" height="194" /></a></span>
+    </div>
+  </div>
+
+    <div class="nav_bottom">
+        <span id="Label2"><a href="Default.aspx" style=" margin-left:25px">Home</a>  ｜  <a href="About.aspx?Id=6">About us</a>
+  ｜  <a href="News.aspx?Id=5">News</a>
+  ｜  <a href="Product.aspx?Id=12">Products</a>
+  ｜  <a href="NewProduct.aspx?Id=3">New products</a>
+  ｜  <a href="Download.aspx?Id=2">Download</a>
+  ｜  <a href="Contact.aspx?Id=1">Contact us</a>
+  ｜  </span>
+      
+    </div>
+    <div class="copyright">
+        <span id="Label3">Copyright @ 2005 CPOWER ALL rights reserved</span>
+    </div>
+
+
+    </form>
+</body>
+</html>

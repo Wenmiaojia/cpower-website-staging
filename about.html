@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | CPOWER TOOLS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root { --primary: #cc4400; --primary-hover: #a33600; --dark: #050505; --text-main: #262626; --text-light: #737373; --surface: #ffffff; --bg-body: #f1f5f9; --border: #e2e8f0; --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--surface); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    
+    .top-bar { background-color: var(--dark); color: #a3a3a3; font-size: 0.85rem; padding: 0.5rem 2rem; display: flex; justify-content: flex-end; gap: 1.5rem; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .brand-logo img { display: block; }
+    .main-menu { display: flex; gap: 1.5rem; list-style: none; }
+    .main-menu a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); padding: 0.5rem 0; }
+    .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+    .page-header { position: relative; padding: 8rem 2rem; display: flex; align-items: center; justify-content: center; text-align: center; background: #000; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,0.9)), url('https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80') center/cover fixed; opacity: 0.8; z-index: 0; }
+    .page-header-inner { position: relative; z-index: 1; max-width: 900px; animation: fadeUp 1s ease forwards; }
+    .breadcrumbs { color: var(--primary); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: block; }
+    .breadcrumbs a { color: #fff; text-decoration: none; transition: var(--transition); }
+    .breadcrumbs a:hover { color: var(--primary); }
+    .page-title { font-size: 4rem; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -1px; }
+
+    .heritage-section { max-width: 1400px; margin: 8rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .heritage-text h3 { color: var(--primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem; }
+    .heritage-text h2 { font-size: 2.75rem; color: var(--dark); font-weight: 800; line-height: 1.2; margin-bottom: 2rem; }
+    .heritage-text p { font-size: 1.15rem; color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem; }
+    .heritage-text .highlight { color: var(--dark); font-weight: 700; }
+    
+    .image-collage { position: relative; height: 600px; }
+    .img-main { position: absolute; top: 0; right: 0; width: 80%; height: 80%; object-fit: cover; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); z-index: 1; }
+    .img-accent { position: absolute; bottom: 0; left: 0; width: 55%; height: 55%; object-fit: cover; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 10px solid var(--surface); z-index: 2; }
+
+    .stats-banner { background: var(--dark); padding: 6rem 2rem; position: relative; }
+    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; z-index: 2; }
+    .stat-item { text-align: center; padding: 2rem; }
+    .stat-num { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 1.1rem; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* Clean CSS Certification Badges */
+    .cert-band { background-color: var(--surface); padding: 4rem 2rem; border-bottom: 1px solid var(--border); }
+    .cert-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+    .cert-badge { border: 2px solid var(--border); padding: 1.5rem 2.5rem; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition); background: var(--bg-body); min-width: 250px; }
+    .cert-badge:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(204,68,0,0.1); }
+    .cert-badge i { color: var(--primary); margin-bottom: 0.75rem; }
+    .cert-badge strong { font-size: 1.4rem; color: var(--dark); font-weight: 800; letter-spacing: 1px; }
+    .cert-badge span { font-size: 0.85rem; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-top: 0.25rem; }
+
+    .exhibition-section { background: var(--bg-body); padding: 8rem 2rem; }
+    .section-header { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
+    .section-header h2 { font-size: 2.75rem; font-weight: 800; color: var(--dark); margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+    .section-header p { font-size: 1.15rem; color: var(--text-light); line-height: 1.8; }
+    
+    .exhibition-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .expo-card { position: relative; border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); group; }
+    .expo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .expo-card:hover img { transform: scale(1.1); }
+    .expo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.4) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; transition: var(--transition); }
+    .expo-card:hover .expo-overlay { background: linear-gradient(to top, rgba(204,68,0,0.9) 0%, rgba(5,5,5,0.6) 60%, transparent 100%); }
+    .expo-overlay h3 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; transform: translateY(10px); transition: var(--transition); }
+    .expo-overlay p { font-size: 1.1rem; color: #cbd5e1; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; transform: translateY(10px); transition: var(--transition); transition-delay: 0.1s; }
+    .expo-card:hover .expo-overlay h3, .expo-card:hover .expo-overlay p { transform: translateY(0); }
+
+    .value-section { max-width: 1400px; margin: 8rem auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .value-card { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); }
+    .value-card:hover { border-color: var(--primary); box-shadow: 0 15px 35px rgba(204,68,0,0.05); transform: translateY(-5px); }
+    .value-icon { width: 64px; height: 64px; background: var(--bg-body); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+    .value-card h4 { font-size: 1.4rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem; }
+    .value-card p { font-size: 1.05rem; color: var(--text-light); line-height: 1.7; }
+
+    .cta-section { background: var(--dark); color: white; padding: 8rem 2rem; text-align: center; }
+    .cta-inner { max-width: 800px; margin: 0 auto; }
+    .cta-inner h2 { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -1px; }
+    .cta-inner p { font-size: 1.25rem; color: #a3a3a3; margin-bottom: 3rem; line-height: 1.6; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--primary); color: white; padding: 1.2rem 3rem; font-size: 1.1rem; font-weight: 700; border-radius: 8px; text-decoration: none; transition: var(--transition); }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(204, 68, 0, 0.3); }
+
+    footer { background: #000; color: #a3a3a3; padding: 3rem 2rem; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--primary); }
+
+    @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 1024px) { 
+      .split-layout, .exhibition-grid { grid-template-columns: 1fr; gap: 4rem; } 
+      .image-collage { height: 500px; margin-top: 2rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; } 
+      .value-section { grid-template-columns: 1fr; gap: 2rem; margin: 4rem auto; } 
+      .page-title { font-size: 3rem; }
+    }
+    @media (max-width: 768px) { 
+      .main-menu { display: none; } 
+      .stats-grid { grid-template-columns: 1fr; } 
+      .cert-logos { gap: 1.5rem; }
+      .expo-card { height: 400px; }
+      .expo-overlay h3 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <span>Tel: 0086-29-88455900</span>
+    <span>Email: jack.jia@cpowertoolsco.com</span>
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="photos/cpowerlogo1.jpg" alt="CPower Tools" width="150">
+      </a>
+      <ul class="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About us</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="#">New Products</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="breadcrumbs"><a href="index.html">Home</a> &nbsp;//&nbsp; About Us</span>
+      <h1 class="page-title">Engineering the Tools that Build the World.</h1>
+    </div>
+  </div>
+
+  <main>
+    <section class="heritage-section">
+      <div class="heritage-text">
+        <h3>Corporate Heritage</h3>
+        <h2>Global Manufacturing Authority Since 2007.</h2>
+        <p>Officially established in August 2007 as <span class="highlight">Xi'an Liding Energy Technology Co., Ltd.</span>, CPOWER Tools has evolved from a specialized engineering consultancy into a premier global manufacturing hub.</p>
+        <p>Operating out of the prestigious Xi'an High-Tech Industrial Development Zone, we bridge the gap between heavy-duty industrial fabrication and seamless international supply chain logistics. With over 15 years of proven excellence, we don't just forge drop-tested steel—we forge resilient, long-term partnerships with distributors across North America, Europe, and Asia.</p>
+      </div>
+      
+      <div class="image-collage">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1000&q=80" alt="CPOWER Manufacturing Plant" class="img-main">
+        <!-- Replaced the broken image URL here with a reliable industrial close-up -->
+        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80" alt="Precision Forged Steel Tools" class="img-accent">
+      </div>
+    </section>
+
+    <section class="stats-banner">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years of Expertise</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Export Nations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">¥2.8M</div>
+          <div class="stat-label">Registered Capital</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Export Compliance</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cert-band">
+      <div class="cert-logos">
+        <div class="cert-badge">
+          <i data-lucide="globe-2" style="width: 32px; height: 32px;"></i>
+          <strong>CANTON FAIR</strong>
+          <span>Recognized Exhibitor</span>
+        </div>
+        <div class="cert-badge">
+          <i data-lucide="shield-check" style="width: 32px; height: 32px;"></i>
+          <strong>ISO 9001:2015</strong>
+          <span>Certified Facility</span>
+        </div>
+        <div class="cert-badge">
+          <i data-lucide="award" style="width: 32px; height: 32px;"></i>
+          <strong>CE MARK</strong>
+          <span>Export Compliant</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="exhibition-section">
+      <div class="section-header">
+        <h2>Commanding the Global Stage</h2>
+        <p>We consistently showcase our scaled manufacturing capabilities and connect face-to-face with wholesale partners at the world's most prestigious industrial hardware trade fairs.</p>
+      </div>
+      
+      <div class="exhibition-grid">
+        <div class="expo-card">
+          <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1200&q=80" alt="Canton Fair Exhibition Floor">
+          <div class="expo-overlay">
+            <h3>Canton Fair (Guangzhou)</h3>
+            <p>China Import and Export Fair</p>
+          </div>
+        </div>
+        
+        <div class="expo-card">
+          <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1200&q=80" alt="Eisenwarenmesse Cologne Hardware Fair">
+          <div class="expo-overlay">
+            <h3>Eisenwarenmesse (Cologne)</h3>
+            <p>International Hardware Fair</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="value-section">
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="clock" stroke-width="2.5"></i></div>
+        <h4>15+ Years of Proven Expertise</h4>
+        <p>Over a decade and a half of dedicated industrial hardware manufacturing. We have refined our metallurgical processes, scaled our production lines, and built a resilient supply chain.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="shield-check" stroke-width="2.5"></i></div>
+        <h4>Rigorous Quality Control</h4>
+        <p>Every batch is subjected to strict testing. Our facilities operate under CE and ISO standards to guarantee absolute field reliability for your end-users.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="ship" stroke-width="2.5"></i></div>
+        <h4>Port-to-Port Logistics</h4>
+        <p>International freight is in our DNA. We handle complex export documentation, customs clearance, and container logistics so your inventory arrives safely and on schedule.</p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-inner">
+        <h2>Ready to Scale Your Inventory?</h2>
+        <p>Connect directly with our dedicated export management team. Jack and Vivian are standing by to provide rapid RFQ turnarounds, manufacturing specs, and transparent freight timelines.</p>
+        <a href="contact.html" class="btn-primary">Connect with an Account Manager <i data-lucide="arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a> ｜ 
+      <a href="about.html">About us</a> ｜ 
+      <a href="news.html">News</a> ｜ 
+      <a href="products.html">Products</a> ｜ 
+      <a href="#">New products</a> ｜ 
+      <a href="#">Download</a> ｜ 
+      <a href="contact.html">Contact us</a>
+    </div>
+    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
