@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Cpower Tools & Machinery Co.Ltd</title>
+  <title>Contact Us | CPOWER TOOLS & Machinery Co., Ltd.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -262,21 +262,9 @@
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
-      height: 300px;
+      height: 350px;
       background: #e2e8f0;
       position: relative;
-    }
-    .map-placeholder-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--text-light);
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     /* Footer */
@@ -323,11 +311,11 @@
         <li><a href="about.html">About us</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="products.html">Products</a></li>
-        <!-- THIS IS THE NEW LINK -->
         <li><a href="new_products/index.html">New Products</a></li>
         <li><a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
-        <li><a href="contact.html">Contact us</a></li>
+        <li><a href="contact.html" class="active">Contact us</a></li>
       </ul>
+    </div>
   </header>
 
   <!-- Page Banner -->
@@ -360,10 +348,12 @@
         <li><a href="products.html?category=shifting">Shifting Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
       </ul>
 
-      <div class="archive-section">
-        <div class="archive-title">Historical Catalogues</div>
+      <div class="archive-section" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-light); margin-bottom: 0.75rem; text-transform: uppercase;">Historical Catalogues</div>
         <div class="archive-links">
-          <a href="#">2007</a> / <a href="#">2009</a> / <a href="#">2015</a>
+          <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem;">2007</a> / 
+          <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem;">2009</a> / 
+          <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem;">2015</a>
         </div>
       </div>
     </aside>
@@ -380,7 +370,7 @@
               <div class="contact-icon"><i data-lucide="map-pin"></i></div>
               <div class="contact-text">
                 <h4>Address</h4>
-                <p>Cpower Tools Co., Ltd.<br>D-2304 Van Metropolis, No.35 Tangyan Road<br>Xi'an, China<br>Zip: 710065</p>
+                <p>CPOWER Tools Co., Ltd.<br>D-2304 Van Metropolis, No.35 Tangyan Road<br>Xi'an, China<br>Zip: 710065</p>
               </div>
             </li>
             <li>
@@ -447,13 +437,17 @@
         </div>
       </div>
 
-      <!-- Map Integration -->
+      <!-- Live Interactive Google Map -->
       <div class="map-container">
-        <!-- REPLACE THIS DIV WITH ACTUAL GOOGLE MAPS IFRAME -->
-        <div class="map-placeholder-text">
-          <i data-lucide="map" style="width: 48px; height: 48px;"></i>
-          <span>Interactive Map: D-2304 Van Metropolis, Xi'an, China</span>
-        </div>
+        <iframe 
+          src="https://maps.google.com/maps?q=Van%20Metropolis,%20No.35%20Tangyan%20Road,%20Xi'an,%20China&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
 
     </section>
@@ -465,7 +459,6 @@
       <a href="about.html">About us</a> ｜ 
       <a href="news.html">News</a> ｜ 
       <a href="products.html">Products</a> ｜ 
-      <!-- THIS IS THE NEW LINK -->
       <a href="new_products/index.html">New products</a> ｜ 
       <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="contact.html">Contact us</a>
@@ -474,7 +467,6 @@
   </footer>
 
   <script>
-    // Initialize Lucide Icons
     lucide.createIcons();
   </script>
 </body>

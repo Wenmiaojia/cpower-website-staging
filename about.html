@@ -20,7 +20,8 @@
     .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
     .page-header { position: relative; padding: 8rem 2rem; display: flex; align-items: center; justify-content: center; text-align: center; background: #000; overflow: hidden; }
-    .page-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,0.9)), url('https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80') center/cover fixed; opacity: 0.8; z-index: 0; }
+    /* SWAPPED: Hero Background Image */
+    .page-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,0.9)), url('web_assets/factory/factory_floor_5.jpg') center/cover fixed; opacity: 0.8; z-index: 0; }
     .page-header-inner { position: relative; z-index: 1; max-width: 900px; animation: fadeUp 1s ease forwards; }
     .breadcrumbs { color: var(--primary); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: block; }
     .breadcrumbs a { color: #fff; text-decoration: none; transition: var(--transition); }
@@ -43,7 +44,6 @@
     .stat-num { font-size: 4rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.5rem; }
     .stat-label { font-size: 1.1rem; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 
-    /* Clean CSS Certification Badges */
     .cert-band { background-color: var(--surface); padding: 4rem 2rem; border-bottom: 1px solid var(--border); }
     .cert-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
     .cert-badge { border: 2px solid var(--border); padding: 1.5rem 2.5rem; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition); background: var(--bg-body); min-width: 250px; }
@@ -58,7 +58,7 @@
     .section-header p { font-size: 1.15rem; color: var(--text-light); line-height: 1.8; }
     
     .exhibition-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .expo-card { position: relative; border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); group; }
+    .expo-card { position: relative; border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .expo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .expo-card:hover img { transform: scale(1.1); }
     .expo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.4) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; transition: var(--transition); }
@@ -118,10 +118,9 @@
       </a>
      <ul class="main-menu">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html" class="active">About us</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="products.html">Products</a></li>
-        <!-- THIS IS THE NEW LINK -->
         <li><a href="new_products/index.html">New Products</a></li>
         <li><a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
         <li><a href="contact.html">Contact us</a></li>
@@ -145,10 +144,10 @@
         <p>Operating out of the prestigious Xi'an High-Tech Industrial Development Zone, we bridge the gap between heavy-duty industrial fabrication and seamless international supply chain logistics. With over 20 years of proven excellence, we don't just forge drop-tested steel—we forge resilient, long-term partnerships with distributors across North America, Europe, and Asia.</p>
       </div>
       
+      <!-- SWAPPED: Collage Images -->
       <div class="image-collage">
-        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1000&q=80" alt="CPOWER Manufacturing Plant" class="img-main">
-        <!-- Replaced the broken image URL here with a reliable industrial close-up -->
-        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80" alt="Precision Forged Steel Tools" class="img-accent">
+        <img src="web_assets/factory/factory_floor_1.jpg" alt="CPOWER Manufacturing Plant" class="img-main">
+        <img src="web_assets/factory/factory_floor_2.jpg" alt="Precision Forged Steel Tools" class="img-accent">
       </div>
     </section>
 
@@ -200,16 +199,18 @@
       </div>
       
       <div class="exhibition-grid">
+        <!-- SWAPPED: Canton Fair Image -->
         <div class="expo-card">
-          <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1200&q=80" alt="Canton Fair Exhibition Floor">
+          <img src="web_assets/fairs/2026_spring_canton_fair.jpg" alt="Canton Fair Exhibition Floor">
           <div class="expo-overlay">
             <h3>Canton Fair (Guangzhou)</h3>
             <p>China Import and Export Fair</p>
           </div>
         </div>
         
+        <!-- SWAPPED: Cologne Fair Image -->
         <div class="expo-card">
-          <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1200&q=80" alt="Eisenwarenmesse Cologne Hardware Fair">
+          <img src="web_assets/fairs/2018_koln.jpg" alt="Eisenwarenmesse Cologne Hardware Fair">
           <div class="expo-overlay">
             <h3>Eisenwarenmesse (Cologne)</h3>
             <p>International Hardware Fair</p>
@@ -253,7 +254,6 @@
       <a href="about.html">About us</a> ｜ 
       <a href="news.html">News</a> ｜ 
       <a href="products.html">Products</a> ｜ 
-      <!-- THIS IS THE NEW LINK -->
       <a href="new_products/index.html">New products</a> ｜ 
       <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="contact.html">Contact us</a>

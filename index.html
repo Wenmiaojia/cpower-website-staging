@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cpower Tools & Machinery Co.Ltd</title>
+  <title>CPOWER TOOLS & Machinery Co., Ltd.</title>
   
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* Top Utility Bar */
     .top-bar {
       background-color: var(--dark);
       color: #a3a3a3;
@@ -49,7 +47,6 @@
       gap: 1.5rem;
     }
 
-    /* Main Navigation */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -127,7 +124,6 @@
     .slide-title { font-size: 3.8rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.1; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
     .slide-desc { font-size: 1.3rem; color: #cbd5e1; font-weight: 500; }
     
-    /* Spinning Background Globe */
     .hero-globe {
       position: absolute;
       right: 5%;
@@ -140,7 +136,6 @@
     .hero-globe i { width: 500px; height: 500px; color: #ffffff; }
     @keyframes spinGlobe { 100% { transform: rotate(360deg); } }
 
-    /* Slider Controls */
     .slider-btn {
       position: absolute;
       top: 50%;
@@ -181,7 +176,6 @@
     }
     .dot.active { background: var(--primary); transform: scale(1.3); box-shadow: 0 0 10px var(--primary); }
 
-    /* Clean CSS Certification Badges */
     .cert-band { background-color: var(--surface); padding: 3rem 2rem; border-bottom: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.02); position: relative; z-index: 20; }
     .cert-logos { display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; max-width: 1400px; margin: 0 auto; }
     .cert-badge { border: 1px solid var(--border); padding: 1.25rem 2rem; border-radius: 8px; display: flex; align-items: center; gap: 1rem; transition: var(--transition); background: var(--bg-body); flex: 1; min-width: 250px; justify-content: center; position: relative; overflow: hidden; }
@@ -193,7 +187,6 @@
     .cert-badge strong { font-size: 1.1rem; color: var(--dark); font-weight: 800; letter-spacing: 0.5px; line-height: 1.2; }
     .cert-badge span { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
 
-    /* Main Layout Grid */
     .layout-grid {
       max-width: 1400px;
       margin: 4rem auto 4rem;
@@ -203,7 +196,6 @@
       gap: 3.5rem;
     }
 
-    /* Left Sidebar */
     .sidebar { height: fit-content; position: sticky; top: 100px; }
     .sidebar-menu-box {
       background: var(--surface);
@@ -223,7 +215,6 @@
     .archive-title { font-size: 0.85rem; font-weight: 700; color: var(--text-light); margin-bottom: 0.75rem; text-transform: uppercase; }
     .archive-links a { color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-right: 0.5rem; }
 
-    /* Fancy Sidebar Promo Box */
     .sidebar-promo {
       background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
       border-radius: 12px;
@@ -238,11 +229,9 @@
     .btn-promo { display: inline-block; width: 100%; background: var(--primary); color: white; padding: 0.75rem; border-radius: 6px; text-decoration: none; font-weight: 700; transition: var(--transition); }
     .btn-promo:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(204,68,0,0.4); }
 
-    /* Right Content Area */
     .content-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--dark); padding-bottom: 0.5rem; margin-bottom: 2.5rem; }
     .content-title { font-size: 2rem; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; }
 
-    /* High-End Profile Section with 3D Globe */
     .company-profile-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -262,9 +251,9 @@
     .stat-micro h5 { font-size: 1.75rem; font-weight: 800; color: var(--dark); line-height: 1; margin-bottom: 0.25rem; }
     .stat-micro span { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
     
-    /* Interactive 3D Globe Wrapper */
+    /* FIX: Cleaned up Globe Wrapper Background */
     .globe-container-wrapper {
-      background: linear-gradient(rgba(5,5,5,0.8), rgba(5,5,5,0.9)), url('https://images.pexels.com/photos/220201/pexels-photo-220201.jpeg?auto=compress&cs=tinysrgb&w=800') center/cover;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
       border-radius: 12px;
       position: relative;
       overflow: hidden;
@@ -279,7 +268,6 @@
     #globeViz { width: 100%; height: 350px; cursor: grab; }
     #globeViz:active { cursor: grabbing; }
 
-    /* Industries We Serve Grid */
     .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
     .industry-card { height: 180px; position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
     .industry-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
@@ -288,7 +276,6 @@
     .industry-card:hover img { transform: scale(1.1); }
     .industry-card:hover .industry-overlay { background: rgba(204,68,0,0.85); border-color: rgba(255,255,255,0.3); }
 
-    /* Product Grid */
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
     .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; transition: var(--transition); display: flex; flex-direction: column; }
     .product-card:hover { border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.06); transform: translateY(-5px); }
@@ -297,20 +284,17 @@
     .product-card:hover img { transform: scale(1.05); }
     .product-name { font-weight: 800; color: var(--dark); font-size: 1.05rem; margin-bottom: 1rem; flex-grow: 1; }
     
-    /* Glowing Sweep Button */
     .btn-rfq { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.75rem; background: var(--bg-body); color: var(--primary); font-weight: 700; text-decoration: none; border-radius: 6px; transition: var(--transition); overflow: hidden; z-index: 1; }
     .btn-rfq::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--primary); z-index: -1; transition: all 0.4s ease; }
     .btn-rfq:hover::after { left: 0; }
     .btn-rfq:hover { color: white; }
 
-    /* OEM Technical Banner */
     .oem-banner { background: linear-gradient(135deg, var(--primary) 0%, #a33600 100%); border-radius: 12px; padding: 3rem; display: flex; align-items: center; justify-content: space-between; color: white; margin-bottom: 4rem; box-shadow: 0 15px 30px rgba(204,68,0,0.15); }
     .oem-text h3 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
     .oem-text p { font-size: 1.1rem; opacity: 0.9; }
     .btn-oem { background: white; color: var(--primary); padding: 1rem 2rem; font-weight: 800; border-radius: 8px; text-decoration: none; transition: var(--transition); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .btn-oem:hover { background: var(--dark); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 
-    /* Premium News Strip */
     .news-strip { display: flex; align-items: center; justify-content: space-between; background: var(--surface); padding: 2rem; border-radius: 0 12px 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); text-decoration: none; transition: var(--transition); margin-bottom: 2rem; border: 1px solid var(--border); border-left: 4px solid var(--primary); }
     .news-strip:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.06); transform: translateX(8px); border-color: var(--primary); }
     .news-content { max-width: 80%; }
@@ -320,7 +304,6 @@
     .news-arrow { color: var(--primary); background: var(--bg-body); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); }
     .news-strip:hover .news-arrow { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 4px 10px rgba(204,68,0,0.3); }
 
-    /* Edge-to-Edge CTA Anchor */
     .cta-section { background: var(--dark); color: white; padding: 6rem 2rem; text-align: center; margin-top: 2rem; position: relative; overflow: hidden; }
     .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(204,68,0,0.15) 0%, transparent 60%); pointer-events: none; }
     .cta-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
@@ -332,13 +315,11 @@
     .btn-primary:hover::before { width: 100%; }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(204, 68, 0, 0.4); }
 
-    /* Footer */
     footer { background: #000; color: #a3a3a3; padding: 3rem 2rem; text-align: center; }
     .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
     .footer-links a:hover { color: var(--primary); }
 
-    /* Animations */
     @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 1024px) { 
@@ -363,24 +344,21 @@
 </head>
 <body>
 
-  <!-- Top Utility -->
   <div class="top-bar">
     <span>Tel: 0086-29-88455900</span>
     <span>Email: jack.jia@cpowertoolsco.com</span>
   </div>
 
-  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="brand-logo">
         <img src="photos/cpowerlogo1.jpg" alt="CPower Logo" width="150">
       </a>
       <ul class="main-menu">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="products.html">Products</a></li>
-        <!-- THIS IS THE NEW LINK -->
         <li><a href="new_products/index.html">New Products</a></li>
         <li><a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
         <li><a href="contact.html">Contact us</a></li>
@@ -388,7 +366,6 @@
     </div>
   </header>
 
-  <!-- Epic Sliding Window -->
   <div class="slider-container">
     <div class="hero-globe"><i data-lucide="globe-2"></i></div>
     <button class="slider-btn prev-btn"><i data-lucide="chevron-left"></i></button>
@@ -396,24 +373,22 @@
     
     <div class="slider-track" id="sliderTrack">
       <div class="slide">
-        <!-- Highly stable Pexels CDN Image (Welding/Forging) -->
-        <img src="https://images.pexels.com/photos/1034645/pexels-photo-1034645.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Industrial Tools">
+        <!-- FIXED: Swapped broken external link for your local factory photo -->
+        <img src="web_assets/factory/factory_floor_2.jpg" alt="Precision Machining">
         <div class="slide-content">
           <div class="slide-title">Precision Engineered Tools</div>
           <p class="slide-desc">Delivering high-torque performance to B2B professionals globally.</p>
         </div>
       </div>
       <div class="slide">
-        <!-- Highly stable Pexels CDN Image (Trade Show Crowd) -->
-        <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Trade Show Exhibition">
+        <img src="web_assets/fairs/2018_koln.jpg" alt="CPOWER Exhibition Booth">
         <div class="slide-content">
-          <div class="slide-title">134th Canton Fair Exhibition</div>
-          <p class="slide-desc">Join us at our booth to experience our latest heavy-duty machinery.</p>
+          <div class="slide-title">International Trade Exhibitions</div>
+          <p class="slide-desc">Connecting with wholesale partners at the world's premier hardware fairs.</p>
         </div>
       </div>
       <div class="slide">
-        <!-- Verified Shipping Port & Cargo Image -->
-        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1920&q=80" alt="Global Logistics">
+        <img src="web_assets/factory/factory_floor_9.jpg" alt="Global Logistics">
         <div class="slide-content">
           <div class="slide-title">Seamless Global Supply Chain</div>
           <p class="slide-desc">Exporting reliable OEM/ODM hardware to over 50 nations.</p>
@@ -428,7 +403,6 @@
     </div>
   </div>
 
-  <!-- Bulletproof Certification Badges -->
   <section class="cert-band">
     <div class="cert-logos">
       <div class="cert-badge">
@@ -462,25 +436,20 @@
     </div>
   </section>
 
-  <!-- Main Layout Grid -->
   <main class="layout-grid">
     
-    <!-- Left Sidebar (Sticky) -->
     <aside class="sidebar">
       <div class="sidebar-menu-box">
         <div class="sidebar-title">CPOWER Categories</div>
         <ul class="cat-menu">
           <li><a href="products.html?category=all">All Products <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
+          <li><a href="new_products/index.html" style="color:var(--primary); font-weight:700;">2026 Innovations <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=sockets">Ratchet & Socket Sets <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=bits">Bits & Accessories <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=cabinets">Drawer Tool Cabinets <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=pliers">Pliers & Cutters <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=hammers">Hammers & Axes <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
           <li><a href="products.html?category=wrenches">Wrenches & Spanners <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
-          <li><a href="products.html?category=screwdrivers">Screwdrivers <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
-          <li><a href="products.html?category=measuring">Measuring Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
-          <li><a href="products.html?category=flashlights">Flashlights <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
-          <li><a href="products.html?category=shifting">Shifting Tools <i data-lucide="chevron-right" style="width:16px;"></i></a></li>
         </ul>
 
         <div class="archive-section">
@@ -491,7 +460,6 @@
         </div>
       </div>
 
-      <!-- Fancy Promo Box -->
       <div class="sidebar-promo">
         <i data-lucide="download-cloud" style="width: 40px; height: 40px;"></i>
         <h4>2026 Master Catalog</h4>
@@ -500,10 +468,8 @@
       </div>
     </aside>
 
-    <!-- Right Content Area -->
     <section class="content">
       
-      <!-- High-End Profile Section -->
       <div class="company-profile-section">
         <div class="profile-content">
           <h2>Powering Industry <br><span class="highlight">Since 2007</span></h2>
@@ -529,7 +495,6 @@
           </div>
         </div>
         
-        <!-- INTERACTIVE 3D WEBGL GLOBE -->
         <div class="globe-container-wrapper">
           <div class="globe-title">Active Supply Chain</div>
           <div id="globeViz"></div>
@@ -537,28 +502,24 @@
         </div>
       </div>
 
-      <!-- Industries We Serve -->
       <div class="content-header">
         <h2 class="content-title">Industries We Supply</h2>
       </div>
       
       <div class="industry-grid">
         <div class="industry-card">
-          <!-- Highly stable Pexels CDN Image -->
           <img src="https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Automotive Repair">
           <div class="industry-overlay">
             <h4>Automotive & Repair</h4>
           </div>
         </div>
         <div class="industry-card">
-          <!-- Highly stable Pexels CDN Image -->
           <img src="https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Heavy Construction">
           <div class="industry-overlay">
             <h4>Heavy Construction</h4>
           </div>
         </div>
         <div class="industry-card">
-          <!-- Highly stable Pexels CDN Image -->
           <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aerospace Engineering">
           <div class="industry-overlay">
             <h4>Aerospace & Energy</h4>
@@ -566,7 +527,6 @@
         </div>
       </div>
 
-      <!-- Featured Products Grid -->
       <div class="content-header">
         <h2 class="content-title">Featured Machinery</h2>
       </div>
@@ -594,7 +554,6 @@
         </div>
       </div>
 
-      <!-- Technical Specs Banner -->
       <div class="oem-banner">
         <div class="oem-text">
           <h3>Need Custom OEM Tooling?</h3>
@@ -603,17 +562,16 @@
         <a href="contact.html" class="btn-oem">Send Requirements</a>
       </div>
 
-      <!-- Corporate News Strip -->
       <div class="content-header" style="margin-top: 2rem;">
         <h2 class="content-title">Latest Updates</h2>
       </div>
       
       <a href="news.html" class="news-strip">
         <div class="news-content">
-          <div class="news-date">Exhibition Profile &middot; Sept 15, 2023</div>
-          <div class="news-title">Canton Fair in the Autumn of 2023</div>
+          <div class="news-date">Exhibition Profile &middot; April 15, 2026</div>
+          <div class="news-title">2026 Spring Canton Fair: Unveiling Flagship Innovations</div>
           <div class="news-excerpt">
-            CPOWER Tools Co., Ltd. will participate in the No.134th China import and export goods trade fair in Canton, China. Click here to review our booth details and schedule an executive meeting.
+            CPOWER Tools Co., Ltd. is proud to announce our successful exhibition at the 139th China Import and Export Fair. Click here to review our booth highlights and new OEM partnerships.
           </div>
         </div>
         <div class="news-arrow">
@@ -624,7 +582,6 @@
     </section>
   </main>
 
-  <!-- Edge-to-Edge CTA -->
   <section class="cta-section">
     <div class="cta-inner">
       <h2>Ready to Scale Your Inventory?</h2>
@@ -633,22 +590,20 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
    <div class="footer-links">
       <a href="index.html">Home</a> ｜ 
       <a href="about.html">About us</a> ｜ 
       <a href="news.html">News</a> ｜ 
       <a href="products.html">Products</a> ｜ 
-      <!-- THIS IS THE NEW LINK -->
       <a href="new_products/index.html">New products</a> ｜ 
       <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="contact.html">Contact us</a>
     </div>
+    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
   </footer>
 
   <script>
-    // Initialize Lucide Icons
     lucide.createIcons();
 
     // Slider Logic
@@ -671,26 +626,29 @@
     document.querySelector('.prev-btn').addEventListener('click', prevSlide);
     setInterval(nextSlide, 6000);
 
-    // Interactive 3D WebGL Globe Logic
+    // FIX: Interactive 3D WebGL Globe Logic
     const globeContainer = document.getElementById('globeViz');
     if(globeContainer) {
       const world = Globe()(globeContainer)
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg')
+        // Upgraded to a sleek "Earth at Night" texture so the arcs pop
+        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
         .backgroundColor('rgba(0,0,0,0)')
         .showAtmosphere(true)
         .atmosphereColor('#cc4400')
         .atmosphereAltitude(0.15)
-        .pointOfView({ lat: 30, lng: 90, altitude: 2.2 })
+        .pointOfView({ lat: 34.3416, lng: 108.9398, altitude: 2.2 }) // Centered on Xi'an
         .width(globeContainer.clientWidth)
         .height(350);
 
-      // Trade Routes Originating from Xi'an, China (Lat: 34.3416, Lng: 108.9398)
+      // --- ADD YOUR DAD'S EXACT EXPORT COUNTRIES HERE ---
+      // Once you ask him for the list, you can just update these coordinates!
+      // Format: { startLat: 34.3416, startLng: 108.9398, endLat: [Destination_Latitude], endLng: [Destination_Longitude] }
       const arcsData = [
-        { startLat: 34.3416, startLng: 108.9398, endLat: 40.7128, endLng: -74.0060 }, // NY
-        { startLat: 34.3416, startLng: 108.9398, endLat: 51.5074, endLng: -0.1278 },  // London
-        { startLat: 34.3416, startLng: 108.9398, endLat: -23.5505, endLng: -46.6333 }, // Sao Paulo
-        { startLat: 34.3416, startLng: 108.9398, endLat: -33.8688, endLng: 151.2093 }, // Sydney
-        { startLat: 34.3416, startLng: 108.9398, endLat: 25.2048, endLng: 55.2708 }    // Dubai
+        { startLat: 34.3416, startLng: 108.9398, endLat: 40.7128, endLng: -74.0060 }, // NY (Placeholder)
+        { startLat: 34.3416, startLng: 108.9398, endLat: 51.5074, endLng: -0.1278 },  // London (Placeholder)
+        { startLat: 34.3416, startLng: 108.9398, endLat: -23.5505, endLng: -46.6333 }, // Sao Paulo (Placeholder)
+        { startLat: 34.3416, startLng: 108.9398, endLat: -33.8688, endLng: 151.2093 }, // Sydney (Placeholder)
+        { startLat: 34.3416, startLng: 108.9398, endLat: 25.2048, endLng: 55.2708 }    // Dubai (Placeholder)
       ];
 
       world.arcsData(arcsData)
@@ -700,9 +658,8 @@
         .arcDashAnimateTime(2000)
         .arcStroke(1.2);
 
-      // Plotting Hub Points
       const hubs = arcsData.map(d => ({ lat: d.endLat, lng: d.endLng, size: 0.05, color: '#ffffff' }));
-      hubs.push({ lat: 34.3416, lng: 108.9398, size: 0.1, color: '#cc4400' }); // HQ (Xi'an)
+      hubs.push({ lat: 34.3416, lng: 108.9398, size: 0.1, color: '#cc4400' }); 
       
       world.pointsData(hubs)
         .pointColor('color')
@@ -712,7 +669,6 @@
       world.controls().autoRotate = true;
       world.controls().autoRotateSpeed = 1.0;
 
-      // Handle Resize
       window.addEventListener('resize', () => {
         world.width(globeContainer.clientWidth);
       });
