@@ -38,6 +38,27 @@
     .scrolling-banner img:hover { border-color: var(--primary); transform: translateY(-3px); }
     
     @keyframes scroll-banner { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* --- NEW 2026 SCROLLING BANNER (MASSIVE HERO SIZE) --- */
+    .banner-section { max-width: 1400px; margin: 0 auto 4rem auto; background: var(--surface); padding: 4rem 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .banner-title { text-align: center; font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 1.5px; }
+    .banner-title span { color: var(--primary); }
+    
+    .banner-wrapper { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
+    .banner-wrapper::before, .banner-wrapper::after { content: ''; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; pointer-events: none; }
+    .banner-wrapper::before { left: 0; background: linear-gradient(to right, var(--surface), transparent); }
+    .banner-wrapper::after { right: 0; background: linear-gradient(to left, var(--surface), transparent); }
+    
+    .scrolling-banner { display: inline-block; animation: scroll-banner 30s linear infinite; }
+    .banner-wrapper:hover .scrolling-banner { animation-play-state: paused; }
+    
+    .scrolling-banner a { display: inline-block; margin-right: 2.5rem; transition: transform 0.3s ease; }
+    .scrolling-banner a:hover { transform: translateY(-8px); }
+    
+    /* SCALED UP IMAGES */
+    .scrolling-banner img { width: 320px; height: 260px; object-fit: contain; background: white; border-radius: 8px; border: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+    .scrolling-banner img:hover { border-color: var(--primary); box-shadow: 0 12px 30px rgba(204, 68, 0, 0.15); }
+    
+    @keyframes scroll-banner { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     
     .trust-banner { max-width: 1400px; margin: 0 auto 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 0 2rem; }
     .trust-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
@@ -99,16 +120,16 @@
       <a href="index.html" class="brand-logo">
         <img src="photos/cpowerlogo1.jpg" alt="CPower Tools" width="150">
       </a>
-      <ul class="main-menu">
+    <ul class="main-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="news.html">News</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
-        <li><a href="#">New Products</a></li>
-        <li><a href="#">Download</a></li>
+        <li><a href="products.html">Products</a></li>
+        <!-- THIS IS THE NEW LINK -->
+        <li><a href="new_products/index.html">New Products</a></li>
+        <li><a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
         <li><a href="contact.html">Contact us</a></li>
       </ul>
-    </div>
   </header>
 
 
@@ -166,6 +187,30 @@
     </div>
   </div>
 
+  <!-- Paste it right here, below the Trust Cards but above the main layout grid -->
+  
+  <!-- 2026 FEATURED INNOVATIONS BANNER -->
+  <div class="banner-section">
+    <h3 class="banner-title">🔥 <span>2026</span> Featured Innovations</h3>
+    <div class="banner-wrapper">
+      <div class="scrolling-banner">
+        <!-- First Set -->
+        <a href="new_products/new_pump_pliers.html" title="New Pump Pliers"><img src="web_assets/products/new_pump_pliers.png" alt="Pump Pliers"></a>
+        <a href="new_products/new_foam_gun.html" title="Professional PU Foam Gun"><img src="web_assets/products/new_foam_gun.jpg" alt="Foam Gun"></a>
+        <a href="new_products/knife_and_scraper.html" title="2-in-1 Scraper"><img src="web_assets/products/knife_and_scraper.jpg" alt="Scraper"></a>
+        <a href="new_products/2in1_bit_adaptor.html" title="2-in-1 Bit Adaptor"><img src="web_assets/products/2in1_bit_adaptor.jpg" alt="Adaptor"></a>
+        <a href="new_products/nail_puller.html" title="Heavy-Duty Nail Puller"><img src="web_assets/products/nail_puller.jpg" alt="Nail Puller"></a>
+        
+        <!-- Duplicated Set for Infinite Seamless Loop -->
+        <a href="new_products/new_pump_pliers.html" title="New Pump Pliers"><img src="web_assets/products/new_pump_pliers.png" alt="Pump Pliers"></a>
+        <a href="new_products/new_foam_gun.html" title="Professional PU Foam Gun"><img src="web_assets/products/new_foam_gun.jpg" alt="Foam Gun"></a>
+        <a href="new_products/knife_and_scraper.html" title="2-in-1 Scraper"><img src="web_assets/products/knife_and_scraper.jpg" alt="Scraper"></a>
+        <a href="new_products/2in1_bit_adaptor.html" title="2-in-1 Bit Adaptor"><img src="web_assets/products/2in1_bit_adaptor.jpg" alt="Adaptor"></a>
+        <a href="new_products/nail_puller.html" title="Heavy-Duty Nail Puller"><img src="web_assets/products/nail_puller.jpg" alt="Nail Puller"></a>
+      </div>
+    </div>
+  </div>
+  <!-- END BANNER -->
   <main class="layout-grid">
     <aside class="sidebar">
       <div class="sidebar-title">CPOWER Categories</div>
@@ -1002,8 +1047,9 @@
       <a href="about.html">About us</a> ｜ 
       <a href="news.html">News</a> ｜ 
       <a href="products.html">Products</a> ｜ 
-      <a href="#">New products</a> ｜ 
-      <a href="#">Download</a> ｜ 
+      <!-- THIS IS THE NEW LINK -->
+      <a href="new_products/index.html">New products</a> ｜ 
+      <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="contact.html">Contact us</a>
     </div>
     <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>

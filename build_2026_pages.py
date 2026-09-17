@@ -1,11 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>INDUSTRIAL TOOL MODEL 9 | CPOWER TOOLS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
+import os
+
+# --- 2026 PRODUCT DATABASE ---
+catalog = [
+    {
+        "id": "new_pump_pliers",
+        "title": "NEW PUMP PLIERS",
+        "image": "new_pump_pliers.png",
+        "video": "new_pump_pliers.mp4",
+        "desc": "Engineered with a quick-adjust push-button mechanism for rapid sizing.|Features induction-hardened asymmetric teeth for a self-locking grip on pipes and nuts.|Reduces hand fatigue during heavy-duty plumbing and HVAC applications."
+    },
+    {
+        "id": "nail_puller",
+        "title": "HEAVY-DUTY NAIL PULLER",
+        "image": "nail_puller.jpg",
+        "video": None,
+        "desc": "Drop-forged from high-carbon steel with a rust-resistant finish.|Precision-honed, low-profile claws easily penetrate tight spaces.|High-leverage heel maximizes extraction force for demolition and framing."
+    },
+    {
+        "id": "2in1_bit_adaptor",
+        "title": "2-IN-1 BIT ADAPTOR",
+        "image": "2in1_bit_adaptor.jpg",
+        "video": "2in1_adaptor.mp4",
+        "desc": "Impact-rated, dual-function driver accessory machined from premium S2 steel.|Quick-release locking mechanism seamlessly transitions between driving profiles.|Built specifically to withstand high-torque power tools."
+    },
+    {
+        "id": "new_foam_gun",
+        "title": "PROFESSIONAL PU FOAM GUN",
+        "image": "new_foam_gun.jpg",
+        "video": "new_foam_gun.mp4",
+        "desc": "Designed for precision insulation and sealing.|Teflon-coated barrel and needle prevent adhesive buildup.|Ergonomic grip and micro-adjustable flow valve for ultimate expansion control and zero-waste application."
+    },
+    {
+        "id": "knife_and_scraper",
+        "title": "2-IN-1 UTILITY KNIFE & SCRAPER",
+        "image": "knife_and_scraper.jpg",
+        "video": "2_in_1_utility_knife_and_scrper.mp4",
+        "desc": "Heavy-duty zinc-alloy frame featuring a patented dual-action mechanism.|Instantly snaps from a standard cutting blade into a rigid flat scraper.|Includes a quick-change blade release and a secure safety lock for job site versatility."
+    }
+]
+
+# Add the generic numbered products
+for num, ext in [('6', 'png'), ('7', 'jpg'), ('8', 'png'), ('9', 'jpeg'), ('10', 'png')]:
+    catalog.append({
+        "id": f"tool_{num}",
+        "title": f"INDUSTRIAL TOOL MODEL {num}",
+        "image": f"{num}.{ext}",
+        "video": None,
+        "desc": "High-performance industrial tool precision-forged for heavy-duty applications.|Engineered to withstand extreme torque and repeated job site wear.|ISO 9001 and CE compliant for global distribution."
+    })
+
+os.makedirs("new_products", exist_ok=True)
+
+# EXACT CSS WITH PREMIUM SHOWROOM ADDITIONS
+CSS_STYLES = """
   <style>
     :root { --primary: #cc4400; --primary-hover: #a33600; --dark: #050505; --text-main: #262626; --text-light: #737373; --surface: #ffffff; --bg-body: #f1f5f9; --border: #e2e8f0; --transition: all 0.3s ease; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,10 +118,10 @@
     .footer-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.2s; }
     .footer-links a:hover { color: var(--primary); }
   </style>
+"""
 
-</head>
-<body>
-  
+def get_header(active_nav):
+    return f"""
   <div class="top-bar">
     <span>Tel: 0086-29-88455900</span>
     <span>Email: jack.jia@cpowertoolsco.com</span>
@@ -87,23 +134,25 @@
         <li><a href="../about.html">About us</a></li>
         <li><a href="../news.html">News</a></li>
         <li><a href="../products.html">Products</a></li>
-        <li><a href="index.html" class="active">New Products</a></li>
+        <li><a href="index.html" class="{'active' if active_nav == 'new' else ''}">New Products</a></li>
         <li><a href="../web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
         <li><a href="../contact.html">Contact us</a></li>
       </ul>
     </div>
   </header>
+"""
 
-  <div class="page-header">
-    <div class="page-header-inner">
-      <h1 class="page-title">INDUSTRIAL TOOL MODEL 9</h1>
-      <div class="breadcrumbs">
-        <a href="index.html">New Products</a> &nbsp;/&nbsp; <span>INDUSTRIAL TOOL MODEL 9</span>
-      </div>
+footer_html = """
+  <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a> ｜ <a href="../about.html">About us</a> ｜ <a href="../news.html">News</a> ｜ <a href="../products.html">Products</a> ｜ <a href="index.html">New products</a> ｜ <a href="../web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">ISO 9001 Certificate</a> ｜ <a href="../contact.html">Contact us</a>
     </div>
-  </div>
-  <main class="layout-grid" style="margin-top: 3rem;">
-    
+    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+  </footer>
+  <script>lucide.createIcons();</script>
+"""
+
+sidebar_html = """
     <aside class="sidebar">
       <div class="sidebar-title">CPOWER Categories</div>
       <ul class="cat-menu">
@@ -117,42 +166,118 @@
         <li><a href="../products.html?category=screwdrivers">Screwdrivers <i data-lucide="chevron-right"></i></a></li>
       </ul>
     </aside>
+"""
 
+gallery_cards = ""
+for item in catalog:
+    video_badge = '<div class="video-badge"><i data-lucide="play-circle" style="width:14px;"></i> VIDEO</div>' if item['video'] else ''
+    gallery_cards += f"""
+        <div class="product-card">
+          <div class="ribbon">NEW 2026</div>
+          {video_badge}
+          <img src="../web_assets/products/{item['image']}" alt="{item['title']}" loading="lazy">
+          <div class="product-name">{item['title']}</div>
+          <a href="{item['id']}.html" class="btn-rfq">View Specs <i data-lucide="arrow-right" style="width: 16px;"></i></a>
+        </div>
+    """
+
+gallery_page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2026 Premium Arrivals | CPOWER TOOLS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  {CSS_STYLES}
+</head>
+<body>
+  {get_header('new')}
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">2026 FLAGSHIP INNOVATIONS</h1>
+      <div class="breadcrumbs"><a href="../index.html">Home</a> &nbsp;/&nbsp; <span>New Products</span></div>
+    </div>
+  </div>
+  <main class="layout-grid" style="margin-top: 3rem;">
+    {sidebar_html}
+    <section class="content">
+        <div class="product-grid">{gallery_cards}</div>
+    </section>
+  </main>
+  {footer_html}
+</body>
+</html>
+"""
+
+with open("new_products/index.html", "w", encoding="utf-8") as f:
+    f.write(gallery_page)
+
+for i, item in enumerate(catalog):
+    prev_item = catalog[i-1] if i > 0 else catalog[-1]
+    next_item = catalog[i+1] if i < len(catalog)-1 else catalog[0]
+    
+    bullets = "\n".join([f"<li>{bullet.strip()}</li>" for bullet in item['desc'].split('|')])
+    
+    if item['video']:
+        media_element = f"""
+            <video class="detail-image" controls autoplay muted loop>
+                <source src="../web_assets/videos/{item['video']}" type="video/mp4">
+            </video>
+        """
+    else:
+        media_element = f'<img class="detail-image" src="../web_assets/products/{item["image"]}" alt="{item["title"]}">'
+
+    detail_page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{item['title']} | CPOWER TOOLS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  {CSS_STYLES}
+</head>
+<body>
+  {get_header('new')}
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">{item['title']}</h1>
+      <div class="breadcrumbs">
+        <a href="index.html">New Products</a> &nbsp;/&nbsp; <span>{item['title']}</span>
+      </div>
+    </div>
+  </div>
+  <main class="layout-grid" style="margin-top: 3rem;">
+    {sidebar_html}
     <section class="content">
         <div class="detail-container">
             <a href="index.html" class="back-link">
                 <i data-lucide="arrow-left" style="width: 18px;"></i> Back to Flagship Innovations
             </a>
             
-            <img class="detail-image" src="../web_assets/products/9.jpeg" alt="INDUSTRIAL TOOL MODEL 9">
+            {media_element}
             
-            <h1 class="detail-title">INDUSTRIAL TOOL MODEL 9</h1>
+            <h1 class="detail-title">{item['title']}</h1>
             
             <ul class="detail-specs">
-                <li>High-performance industrial tool precision-forged for heavy-duty applications.</li>
-<li>Engineered to withstand extreme torque and repeated job site wear.</li>
-<li>ISO 9001 and CE compliant for global distribution.</li>
+                {bullets}
             </ul>
             
-            <a href="mailto:jack.jia@cpowertoolsco.com?subject=Wholesale Quote Request: INDUSTRIAL TOOL MODEL 9" class="btn-quote">
+            <a href="mailto:jack.jia@cpowertoolsco.com?subject=Wholesale Quote Request: {item['title']}" class="btn-quote">
                 Request Bulk Quote <i data-lucide="mail" style="width: 20px;"></i>
             </a>
 
             <div class="page-nav">
-                <a href="tool_8.html" class="nav-btn"><i data-lucide="arrow-left"></i> Previous Tool</a>
-                <a href="tool_10.html" class="nav-btn">Next Tool <i data-lucide="arrow-right"></i></a>
+                <a href="{prev_item['id']}.html" class="nav-btn"><i data-lucide="arrow-left"></i> Previous Tool</a>
+                <a href="{next_item['id']}.html" class="nav-btn">Next Tool <i data-lucide="arrow-right"></i></a>
             </div>
         </div>
     </section>
   </main>
-  
-  <footer>
-    <div class="footer-links">
-      <a href="../index.html">Home</a> ｜ <a href="../about.html">About us</a> ｜ <a href="../news.html">News</a> ｜ <a href="../products.html">Products</a> ｜ <a href="index.html">New products</a> ｜ <a href="../web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">ISO 9001 Certificate</a> ｜ <a href="../contact.html">Contact us</a>
-    </div>
-    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
-  </footer>
-  <script>lucide.createIcons();</script>
-
+  {footer_html}
 </body>
 </html>
+"""
+    with open(f"new_products/{item['id']}.html", "w", encoding="utf-8") as f:
+        f.write(detail_page)
+
+print("SUCCESS: The VIP Showroom layout is live! Open 'new_products/index.html' to see the ribbons, video badges, and premium glow effects.")
