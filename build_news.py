@@ -80,7 +80,7 @@ footer_html = """
     <div class="footer-links">
       <a href="index.html">Home</a> ｜ <a href="about.html">About us</a> ｜ <a href="news.html">News</a> ｜ <a href="products.html">Products</a> ｜ <a href="new_products/index.html">New products</a> ｜ <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ <a href="contact.html">Contact us</a>
     </div>
-    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+    <div style="font-size: 0.9rem;">Copyright &copy; 2026 CPOWER. All rights reserved.</div>
   </footer>
   <script>lucide.createIcons();</script>
 """
@@ -139,10 +139,12 @@ news_index = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Company News | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="web_assets/css/responsive.css">
 </head>
 <body>
   {header_html}
@@ -189,7 +191,7 @@ for art in articles[1:]:
         </div>
     """
 
-news_index += """
+news_index += f"""
       </div>
     </section>
   </main>
@@ -207,10 +209,12 @@ for art in articles:
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{art['title']} | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="web_assets/css/responsive.css">
 </head>
 <body>
   {header_html}

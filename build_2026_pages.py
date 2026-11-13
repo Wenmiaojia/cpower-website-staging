@@ -147,7 +147,7 @@ footer_html = """
     <div class="footer-links">
       <a href="../index.html">Home</a> ｜ <a href="../about.html">About us</a> ｜ <a href="../news.html">News</a> ｜ <a href="../products.html">Products</a> ｜ <a href="index.html">New products</a> ｜ <a href="../web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">ISO 9001 Certificate</a> ｜ <a href="../contact.html">Contact us</a>
     </div>
-    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+    <div style="font-size: 0.9rem;">Copyright &copy; 2026 CPOWER. All rights reserved.</div>
   </footer>
   <script>lucide.createIcons();</script>
 """
@@ -185,10 +185,12 @@ gallery_page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026 Premium Arrivals | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="../web_assets/css/responsive.css">
 </head>
 <body>
   {get_header('new')}
@@ -231,10 +233,12 @@ for i, item in enumerate(catalog):
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{item['title']} | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="../web_assets/css/responsive.css">
 </head>
 <body>
   {get_header('new')}

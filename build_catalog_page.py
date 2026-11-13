@@ -128,8 +128,8 @@ def get_global_header(root_path):
         <li><a href="{root_path}about.html">About us</a></li>
         <li><a href="{root_path}news.html">News</a></li>
         <li><a href="{root_path}products.html" class="active">Products</a></li>
-        <li><a href="#">New Products</a></li>
-        <li><a href="#">Download</a></li>
+        <li><a href="{root_path}new_products/index.html">New Products</a></li>
+        <li><a href="{root_path}web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a></li>
         <li><a href="{root_path}contact.html">Contact us</a></li>
       </ul>
     </div>
@@ -144,11 +144,11 @@ def get_global_footer(root_path):
       <a href="{root_path}about.html">About us</a> ｜ 
       <a href="{root_path}news.html">News</a> ｜ 
       <a href="{root_path}products.html">Products</a> ｜ 
-      <a href="#">New products</a> ｜ 
-      <a href="#">Download</a> ｜ 
+      <a href="{root_path}new_products/index.html">New products</a> ｜ 
+      <a href="{root_path}web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="{root_path}contact.html">Contact us</a>
     </div>
-    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+    <div style="font-size: 0.9rem;">Copyright &copy; 2026 CPOWER. All rights reserved.</div>
   </footer>
   <script>lucide.createIcons();</script>
 """
@@ -182,6 +182,10 @@ for index, row in df.iterrows():
     detail_file = str(row.get('detail_image_file', '')).strip()
     prod_id = row.get('product_id', index) 
     
+    # Scraped descriptions end in " | Time： | <date> | Click： | <n> | Previous | Next"; keep only the real text.
+    desc = desc.split(' | Time：')[0].strip(' |')
+    specs_html = '' if desc.lower() in ('', 'nan', title.lower()) else f'<div class="detail-specs">{desc}</div>'
+
     if not detail_file or detail_file == 'nan':
         detail_file = thumb_file
         
@@ -213,8 +217,9 @@ for index, row in df.iterrows():
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="../web_assets/css/responsive.css">
 </head>
 <body>
 
@@ -250,8 +255,8 @@ for index, row in df.iterrows():
             </a>
             
             <img class="detail-image" src="../web_ready_images/{detail_file}" alt="{title}">
-            <h1 class="detail-title">{title}</h1>
-            <div class="detail-specs">{desc}</div>
+            <h2 class="detail-title">{title}</h2>
+            {specs_html}
             
             <a href="mailto:jack.jia@cpowertoolsco.com?subject=Wholesale Quote Request: {title}" class="btn-quote">
                 Request Bulk Quote <i data-lucide="mail" style="width: 20px;"></i>
@@ -282,8 +287,9 @@ master_page_html = f"""<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products Directory | CPOWER TOOLS</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
+  <link rel="stylesheet" href="web_assets/css/responsive.css">
 </head>
 <body>
 

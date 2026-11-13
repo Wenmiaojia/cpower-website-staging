@@ -8,11 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- 3D Interactive Globe Libraries -->
-  <script src="https://unpkg.com/three"></script>
-  <script src="https://unpkg.com/globe.gl"></script>
+  <script src="https://unpkg.com/globe.gl@2.34.4/dist/globe.gl.min.js"></script>
 
   <style>
     :root {
@@ -341,6 +340,7 @@
       .slider-btn { display: none; }
     }
   </style>
+  <link rel="stylesheet" href="web_assets/css/responsive.css">
 </head>
 <body>
 
@@ -600,7 +600,7 @@
       <a href="web_assets/docs/cpower_iso_9001_certificate.pdf" target="_blank">Download</a> ｜ 
       <a href="contact.html">Contact us</a>
     </div>
-    <div style="font-size: 0.9rem;">Copyright @ 2026 CPOWER ALL rights reserved.</div>
+    <div style="font-size: 0.9rem;">Copyright &copy; 2026 CPOWER. All rights reserved.</div>
   </footer>
 
   <script>
@@ -631,7 +631,7 @@
     if(globeContainer) {
       const world = Globe()(globeContainer)
         // Upgraded to a sleek "Earth at Night" texture so the arcs pop
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+        .globeImageUrl('https://unpkg.com/three-globe@2.31.1/example/img/earth-night.jpg')
         .backgroundColor('rgba(0,0,0,0)')
         .showAtmosphere(true)
         .atmosphereColor('#cc4400')

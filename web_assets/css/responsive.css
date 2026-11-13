@@ -1,0 +1,35 @@
+/* Shared responsive fixes, loaded after each page's own styles.
+   Keeps the main menu usable on tablets and phones (it used to be hidden
+   with no replacement) and stacks sidebar layouts on small screens. */
+
+img, video, iframe { max-width: 100%; }
+
+@media (max-width: 1024px) {
+  .nav-container { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1rem; }
+  .main-menu {
+    display: flex !important;
+    width: 100%;
+    gap: 1.25rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+  .main-menu::-webkit-scrollbar { display: none; }
+  .main-menu a { white-space: nowrap; font-size: 0.85rem; }
+
+  .layout-grid { grid-template-columns: 1fr !important; padding: 0 1rem; }
+  .sidebar { position: static !important; }
+}
+
+@media (max-width: 600px) {
+  .top-bar { flex-wrap: wrap; justify-content: center; gap: 0.25rem 1rem; padding: 0.5rem 1rem; font-size: 0.8rem; }
+  .page-header { padding: 2.5rem 1rem; }
+  .page-title { font-size: 1.8rem !important; }
+  .article-container, .detail-container { padding: 1.5rem !important; }
+  .article-title, .detail-title { font-size: 1.5rem; }
+  .news-grid { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1rem; }
+  .footer-links { gap: 0.75rem; }
+}
