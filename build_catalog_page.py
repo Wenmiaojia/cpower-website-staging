@@ -1,6 +1,30 @@
 import os
 import pandas as pd
 
+import html as _html
+import re as _re
+
+_ACRONYMS = {"PU", "OEM", "CRV", "CR-V", "PVC", "ABS", "LED", "TPR", "VDE", "SDS", "DIY", "PP", "PE", "PH", "PZ", "SL", "II", "III"}
+
+
+def nice_title(title):
+    """'NEW PUMP PLIERS' -> 'New Pump Pliers', keeping real acronyms like PU and VDE."""
+    return " ".join(w if w in _ACRONYMS else w.capitalize() for w in str(title).split())
+
+
+def head_tags(prefix, title, description):
+    """Search/preview description, link-preview tags and favicons for one page."""
+    e = lambda s: _html.escape(str(s), quote=True)
+    return (f'<meta name="description" content="{e(description)}">\n'
+            '  <meta property="og:type" content="website">\n'
+            '  <meta property="og:site_name" content="CPOWER Tools">\n'
+            f'  <meta property="og:title" content="{e(title)}">\n'
+            f'  <meta property="og:description" content="{e(description)}">\n'
+            f'  <link rel="icon" href="{prefix}web_assets/icons/favicon.ico" sizes="any">\n'
+            f'  <link rel="icon" type="image/png" href="{prefix}web_assets/icons/favicon-32.png">\n'
+            f'  <link rel="apple-touch-icon" href="{prefix}web_assets/icons/apple-touch-icon.png">')
+
+
 # 1. Load the verified dual-image database
 df = pd.read_csv("cpower_verified_catalog.csv")
 df = df[df['sku_title'].notna()]
@@ -44,7 +68,7 @@ CSS_STYLES = """
     .main-menu a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); padding: 0.5rem 0; }
     .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
-    .page-header { background: linear-gradient(to right, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.6) 100%), url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1400&q=80') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
+    .page-header { background: linear-gradient(to right, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.6) 100%), url('__ROOT__web_assets/factory/factory_floor_2.jpg') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
     .page-header-inner { max-width: 1400px; margin: 0 auto; }
     .page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
     .breadcrumbs { color: #94a3b8; font-size: 0.9rem; font-weight: 500; }
@@ -216,9 +240,10 @@ for index, row in df.iterrows():
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | CPOWER TOOLS</title>
+  {head_tags('../', title + ' | CPOWER TOOLS', f"{nice_title(title)} from CPOWER Tools - wholesale and OEM supply from our ISO 9001-certified factory in Xi'an, China.")}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-  {CSS_STYLES}
+  {CSS_STYLES.replace('__ROOT__', '../')}
   <link rel="stylesheet" href="../web_assets/css/responsive.css">
 </head>
 <body>
@@ -286,9 +311,10 @@ master_page_html = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products Directory | CPOWER TOOLS</title>
+  {head_tags('', 'Products Directory | CPOWER TOOLS', 'Browse the CPOWER Tools catalog: ratchet and socket sets, bits, pliers, hammers, wrenches, screwdrivers, measuring tools and tool cabinets for wholesale and OEM supply.')}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-  {CSS_STYLES}
+  {CSS_STYLES.replace('__ROOT__', '')}
   <link rel="stylesheet" href="web_assets/css/responsive.css">
 </head>
 <body>

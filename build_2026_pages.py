@@ -1,5 +1,29 @@
 import os
 
+import html as _html
+import re as _re
+
+_ACRONYMS = {"PU", "OEM", "CRV", "CR-V", "PVC", "ABS", "LED", "TPR", "VDE", "SDS", "DIY", "PP", "PE", "PH", "PZ", "SL", "II", "III"}
+
+
+def nice_title(title):
+    """'NEW PUMP PLIERS' -> 'New Pump Pliers', keeping real acronyms like PU and VDE."""
+    return " ".join(w if w in _ACRONYMS else w.capitalize() for w in str(title).split())
+
+
+def head_tags(prefix, title, description):
+    """Search/preview description, link-preview tags and favicons for one page."""
+    e = lambda s: _html.escape(str(s), quote=True)
+    return (f'<meta name="description" content="{e(description)}">\n'
+            '  <meta property="og:type" content="website">\n'
+            '  <meta property="og:site_name" content="CPOWER Tools">\n'
+            f'  <meta property="og:title" content="{e(title)}">\n'
+            f'  <meta property="og:description" content="{e(description)}">\n'
+            f'  <link rel="icon" href="{prefix}web_assets/icons/favicon.ico" sizes="any">\n'
+            f'  <link rel="icon" type="image/png" href="{prefix}web_assets/icons/favicon-32.png">\n'
+            f'  <link rel="apple-touch-icon" href="{prefix}web_assets/icons/apple-touch-icon.png">')
+
+
 # --- 2026 PRODUCT DATABASE ---
 catalog = [
     {
@@ -67,7 +91,7 @@ CSS_STYLES = """
     .main-menu a:hover, .main-menu a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
     .iso-badge { background: var(--primary); color: white !important; padding: 0.4rem 0.8rem !important; border-radius: 4px; font-size: 0.85rem !important; border: none !important; }
 
-    .page-header { background: linear-gradient(to right, rgba(204, 68, 0, 0.9) 0%, rgba(5, 5, 5, 0.9) 100%), url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1400&q=80') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
+    .page-header { background: linear-gradient(to right, rgba(204, 68, 0, 0.9) 0%, rgba(5, 5, 5, 0.9) 100%), url('../web_assets/factory/factory_floor_2.jpg') center/cover; color: white; padding: 4rem 2rem; margin-bottom: 3rem; }
     .page-header-inner { max-width: 1400px; margin: 0 auto; }
     .page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
     .breadcrumbs { color: #f1f5f9; font-size: 0.9rem; font-weight: 500; }
@@ -187,6 +211,7 @@ gallery_page = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026 Premium Arrivals | CPOWER TOOLS</title>
+  {head_tags('../', '2026 Premium Arrivals | CPOWER TOOLS', '2026 new arrivals from CPOWER Tools - pump pliers, PU foam guns, bit adaptors, nail pullers and more, available for bulk order and OEM customization.')}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
@@ -235,6 +260,7 @@ for i, item in enumerate(catalog):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{item['title']} | CPOWER TOOLS</title>
+  {head_tags('../', item['title'] + ' | CPOWER TOOLS', f"{nice_title(item['title'])} from CPOWER Tools - wholesale and OEM supply from our ISO 9001-certified factory in Xi'an, China.")}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
@@ -260,7 +286,7 @@ for i, item in enumerate(catalog):
             
             {media_element}
             
-            <h1 class="detail-title">{item['title']}</h1>
+            <h2 class="detail-title">{item['title']}</h2>
             
             <ul class="detail-specs">
                 {bullets}

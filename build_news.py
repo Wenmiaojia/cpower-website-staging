@@ -1,5 +1,29 @@
 import os
 
+import html as _html
+import re as _re
+
+_ACRONYMS = {"PU", "OEM", "CRV", "CR-V", "PVC", "ABS", "LED", "TPR", "VDE", "SDS", "DIY", "PP", "PE", "PH", "PZ", "SL", "II", "III"}
+
+
+def nice_title(title):
+    """'NEW PUMP PLIERS' -> 'New Pump Pliers', keeping real acronyms like PU and VDE."""
+    return " ".join(w if w in _ACRONYMS else w.capitalize() for w in str(title).split())
+
+
+def head_tags(prefix, title, description):
+    """Search/preview description, link-preview tags and favicons for one page."""
+    e = lambda s: _html.escape(str(s), quote=True)
+    return (f'<meta name="description" content="{e(description)}">\n'
+            '  <meta property="og:type" content="website">\n'
+            '  <meta property="og:site_name" content="CPOWER Tools">\n'
+            f'  <meta property="og:title" content="{e(title)}">\n'
+            f'  <meta property="og:description" content="{e(description)}">\n'
+            f'  <link rel="icon" href="{prefix}web_assets/icons/favicon.ico" sizes="any">\n'
+            f'  <link rel="icon" type="image/png" href="{prefix}web_assets/icons/favicon-32.png">\n'
+            f'  <link rel="apple-touch-icon" href="{prefix}web_assets/icons/apple-touch-icon.png">')
+
+
 CSS_STYLES = """
   <style>
     :root { --primary: #cc4400; --primary-hover: #a33600; --dark: #050505; --text-main: #262626; --text-light: #737373; --surface: #ffffff; --bg-body: #f1f5f9; --border: #e2e8f0; --transition: all 0.3s ease; }
@@ -141,6 +165,7 @@ news_index = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Company News | CPOWER TOOLS</title>
+  {head_tags('', 'Company News | CPOWER TOOLS', 'News from CPOWER Tools: trade fairs, new product launches and factory updates.')}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
@@ -161,7 +186,7 @@ news_index = f"""<!DOCTYPE html>
       
       <!-- FEATURED ARTICLE (Canton Fair) -->
       <article class="article-container">
-        <h1 class="article-title">{articles[0]['title']}</h1>
+        <h2 class="article-title">{articles[0]['title']}</h2>
         <div class="article-meta">
           <span><i data-lucide="calendar" style="width:16px;"></i> {articles[0]['date']}</span>
           <span><i data-lucide="folder" style="width:16px;"></i> Exhibitions</span>
@@ -211,6 +236,7 @@ for art in articles:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{art['title']} | CPOWER TOOLS</title>
+  {head_tags('', art['title'] + ' | CPOWER TOOLS', art['excerpt'])}
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   {CSS_STYLES}
